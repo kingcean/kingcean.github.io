@@ -1,2 +1,1 @@
-# kingcean.github.io
-The homepage.
+# [http://git.kingcean.com](http://git.kingcean.com/)
