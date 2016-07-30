@@ -1,6 +1,6 @@
-# Web Development Blog
+# Web Software Development Blog
 
-A copy from Kingcean's [MSDN blog](http://blogs.msdn.com/b/kingcean/).
+A copy from Kingcean's [MSDN blog](http://blogs.msdn.com/b/kingcean/p/web.aspx).
 
 - [Parse DOM attribute object](2016/03/18/parse-dom-attribute.md)
 - [Delay task](2016/03/20/delay-task.md)

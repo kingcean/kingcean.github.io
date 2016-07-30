@@ -1,6 +1,6 @@
 # .Net Software Development Blog
 
-A copy from Kingcean's [MSDN blog](http://blogs.msdn.com/b/kingcean/).
+A copy from Kingcean's [MSDN blog](http://blogs.msdn.com/b/kingcean/p/csharp.aspx).
 
 - [Delay task](2016/03/20/delay-task.md)
 - [Multiple hit task](2016/03/21/multiple-hit-task.md)
