@@ -40,7 +40,7 @@ Then open the IDE.
 
 Please check Board and Port in Tools menu to confirm if the model and name are correct.
 
-Navigate to File > Examples > Firmata > StandardFirmata in menu. It will open a new window with codes of StandardFirmata sketch. Go to setup function, you will find Firmate.begin(57600) code which is to connect to the device in 57600 bauds per second. You can change the baud as the value in the manual of your Arduino device.
+Navigate to File > Examples > Firmata > StandardFirmata in menu. It will open a new window with codes of StandardFirmata sketch. Go to setup function, you will find `Firmate.begin(57600)` code which is to connect to the device in 57600 bauds per second. You can change the baud as the value in the manual of your Arduino device.
 
 ![Standard firmata](ArduinoIdeStandardFirmata.png)
 
@@ -63,7 +63,7 @@ We also can list all devices available so that we do not need an identifier to c
 
 ## Create a project in Visual Studio
 
-Open Visual Studio 2015 Update 2 (or higher) to add a Blank App (Universal Windows) project which is used to create UWP.
+Open Visual Studio 2015 Update 3 (or higher) to add a Blank App (Universal Windows) project which is used to create UWP.
 
 ![Create VS project](VsCreateProj.png)
 
