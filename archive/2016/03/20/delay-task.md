@@ -9,7 +9,7 @@ We will design a delay task with following goals to handle this.
 - The task can be run by several times.
 - Auto merge and ignore the previous ones if the task runs again after a short while.
 
-In fact, the above is one of scenarios for usage. We can use this for lots of things. I will introduce this implementation in both of Type Script and C#.
+In fact, the above is one of scenarios for usage. We can use this for lots of things. I will introduce this implementation in both of [Type Script](#type-script) and [C#](#c-sharp).
 
 ## Type Script
 
@@ -147,7 +147,7 @@ Run the test and you can click or tap the page quickly. It will record the lates
 
 And of course, you can continue to add promise support.
 
-## C#
+## C Sharp
 
 Firstly, we need add some references for using.
 
