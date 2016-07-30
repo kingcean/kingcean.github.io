@@ -37,6 +37,7 @@ promise.then(
         // Failure callback.
         console.debug("Error", reasone);
     });
+```
 
 We want to run a function asynchronously. It is to check if the second in next second is an even number. A couple of callback are registered, one is for if the function runs succeeded and another is for failed.
 
