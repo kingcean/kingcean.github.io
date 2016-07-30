@@ -10,7 +10,7 @@ Windows 10 devices, including PCs, mobile devices (such as phones) and IoT devic
 
 We can use any of the WinRT languages to develop, e.g. C#, C++, JavaScript.
 
-To add reference of the library to our project, we just need add its NuGet package. And you can also go to its GitHub site to get source code.
+To add reference of the library to our project, we just need add [its NuGet package](https://www.nuget.org/packages/Windows-Remote-Arduino). And you can also go to [its GitHub site](https://github.com/ms-iot/remote-wiring) to get source code.
 
 Windows Remote Arduino builds a communication architecture like a three layers cake.
 
@@ -26,7 +26,7 @@ Windows Remote Arduino provides a RemoteDevice class for us to access Arduino an
 
 Firstly, we need upload a Firmata for Arduino to facilitate communication as protocol layer. We will use StandardFirmata sketch because it contains some advanced behaviors, such as SPI transactions. It comes pre-packaged with the Arduino IDE. And it is also used by Windows Remote Arduino.
 
-So we need download Arduino IDE to install in dev machine. After installation, you can find it in all apps of Start menu and it is named Arduino.
+So we need [download Arduino IDE](https://www.arduino.cc/en/Main/Software) to install in dev machine. After installation, you can find it in all apps of Start menu and it is named Arduino.
 
 Connect the Arduino to dev PC via USB. Here I will use a Uno like board for demo.
 
@@ -150,46 +150,55 @@ usb.begin(57600); // Need pass baud and serial configuration settings.
 
 The RemoteDevice class has following member methods.
 
-- // Reads mode or state of a specific digital pin.
-public PinMode getPinMode(byte pin_)
-public PinState digitalRead(byte pin_)
+- `// Reads mode or state of a specific digital pin.`
 
-- // Writes mode or state of a specific digital pin.
-public void pinMode(byte pin_, PinMode mode_)
-public void digitalWrite(byte pin_, PinState state_)
+  `public PinMode getPinMode(byte pin_)`
 
-- // Gets mode or state of a specific analog pin.
-public PinMode getPinMode(string analog_pin_)
-public ushort analogRead(string analog_pin_)
+  `public PinState digitalRead(byte pin_)`
 
-- // Writes mode or state of a specific analog pin.
-public void pinMode(string analog_pin_, PinMode mode_)
-public void analogWrite(byte pin_, ushort value_)
+- `// Writes mode or state of a specific digital pin.`
 
-- // Disposes the instance.
-public void Dispose()  
+  `public void pinMode(byte pin_, PinMode mode_)`
+
+  `public void digitalWrite(byte pin_, PinState state_)`
+
+- `// Gets mode or state of a specific analog pin.`
+
+  `public PinMode getPinMode(string analog_pin_)`
+
+  `public ushort analogRead(string analog_pin_)`
+
+- `// Writes mode or state of a specific analog pin.`
+
+  `public void pinMode(string analog_pin_, PinMode mode_)`
+
+  `public void analogWrite(byte pin_, ushort value_)`
+
+- `// Disposes the instance.`
+
+  `public void Dispose()`
 
 And following events.
 
-- public event RemoteDeviceConnectionCallback DeviceReady
+- `public event RemoteDeviceConnectionCallback DeviceReady`
 
-- public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionFailed
+- `public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionFailed`
 
-- public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionLost
+- `public event RemoteDeviceConnectionCallbackWithMessage DeviceConnectionLost`
 
-- public event DigitalPinUpdatedCallback DigitalPinUpdated
+- `public event DigitalPinUpdatedCallback DigitalPinUpdated`
 
-- public event StringMessageReceivedCallback StringMessageReceived
+- `public event StringMessageReceivedCallback StringMessageReceived`
 
-- public event SysexMessageReceivedCallback SysexMessageReceived
+- `public event SysexMessageReceivedCallback SysexMessageReceived`
 
-- public event AnalogPinUpdatedCallback AnalogPinUpdated
+- `public event AnalogPinUpdatedCallback AnalogPinUpdated`
 
 And following properties.
 
-- public HardwareProfile DeviceHardwareProfile { get; }
+- `public HardwareProfile DeviceHardwareProfile { get; }`
 
-- public TwoWire I2c { get; }
+- `public TwoWire I2c { get; }`
 
 So we can use these to access the Arduino device.
 

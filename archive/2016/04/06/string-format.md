@@ -1,12 +1,12 @@
-In dotNet, we always use `String.Format` static method to replace the format items in a specified string with the string representations of corresponding objects in a specified array. Some of other methods also support the similar feature. We call this as composite formatting. It takes a list of objects and a composite format string as input.
+In dotNet, we always use [`String.Format`](https://msdn.microsoft.com/en-us/library/system.string.format.aspx) static method to replace the format items in a specified string with the string representations of corresponding objects in a specified array. Some of other methods also support the similar feature. We call this as [composite formatting](https://msdn.microsoft.com/en-us/library/tcz1y0c1.aspx). It takes a list of objects and a composite format string as input.
 
-A composite format string consists of fixed text intermixed with indexed placeholders, called format items, that correspond to the objects in the list. The syntax of format item is index[,length][:formatString] with outermost braces ("{" and "}"). The formatting operation yields a result string that consists of the original fixed text intermixed with the string representation of the objects in the list.
+A composite format string consists of fixed text intermixed with indexed placeholders, called format items, that correspond to the objects in the list. The syntax of format item is `index[,length][:formatString]` with outermost braces ("{" and "}"). The formatting operation yields a result string that consists of the original fixed text intermixed with the string representation of the objects in the list.
 
 But how can we implement it?
 
 ## Usages
 
-There are many overloads of String.Format static method. One of syntax is like following.
+There are many overloads of `String.Format` static method. One of syntax is like following.
 
 ```csharp
 public static string Format(
@@ -42,15 +42,15 @@ The str variable will be following string if it is at 11:00 am now.
 Hi Kingcean, it is at 11 o'clock now.
 ```
 
-Lots of other methods which support composite formatting are based on the String.Format static method.
+Lots of other methods which support composite formatting are based on the `String.Format` static method.
 
 ## String builder
 
-In fact, dotNet implements String.Format static method by StringBuilder which is in System.Text namespace.
+In fact, dotNet implements `String.Format` static method by [`StringBuilder`](https://msdn.microsoft.com/en-us/library/system.text.stringbuilder.aspx) which is in System.Text namespace.
 
-1. Acquire a StringBuilder instance.
-2. Append format to the StringBuilder instance.
-3. Converts to string and release the StringBuilder instance.
+1. Acquire a `StringBuilder` instance.
+2. Append format to the `StringBuilder` instance.
+3. Converts to string and release the `StringBuilder` instance.
 
 The StringBuilder class is used to represents a mutable string of characters. It provides some member methods to append object to current string with higher performance than combining strings directly. Following are some examples of its member methods to append something.
 
@@ -59,10 +59,16 @@ public StringBuilder Append(char value, int repeatCount = 1);
 public StringBuilder Append(string value);
 ```
 It also support other overloads for further type as argument. And of course, it provide to append an object. The object will be convert to string if it is not null; otherwise, do nothing.
+
+```csharp
 public StringBuilder Append(object value);
+```
 
 This class also contain a member method for appending composite format string. Such as following.
+
+```csharp
 public StringBuilder AppendFormat(IFormatProvider provider, string format, params object[] args);
+```
 
 People can call this method directly, too.
 
