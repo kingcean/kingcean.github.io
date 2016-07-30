@@ -8,3 +8,4 @@ A copy from Kingcean's [MSDN blog](http://blogs.msdn.com/b/kingcean/).
 - [Slide on web](archive/2016/03/23/slide-on-web.md)
 - [JavaScript Promise](archive/2016/03/25/promise-in-web.md)
 - [Localization in web page](archive/2016/03/30/web-localization.md)
+- [Get and set DOM size](archive/2016/04/14/dom-size.md)
