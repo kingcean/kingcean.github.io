@@ -112,14 +112,14 @@ Then we can begin to develop how to communicate with Arduino device from a Windo
 
 ## Connection and communication
 
-Open MainPage.xaml.cs file and add following namespace using.
+Open `MainPage.xaml.cs` file and add following namespace using.
 
 ```csharp
 using Microsoft.Maker.RemoteWiring;
 using Microsoft.Maker.Serial;
 ```
 
-Insert following code to the constructor of the MainPage class. This will create a serial stream instance for a USB device. The arguments in the constructor are the VID and PID of the device. We want to use this to target the Arduino device.
+Insert following code to the constructor of the `MainPage` class. This will create a serial stream instance for a USB device. The arguments in the constructor are the VID and PID of the device. We want to use this to target the Arduino device.
 
 ```csharp
 var usb = new USBSerial("VID_2341", "PID_0043");
@@ -135,13 +135,13 @@ The argument is the name or ID.
 
 In the same way, the NetworkSerial class is used for ethernet and Wi-Fi, and DfRobotBleSerial is used for Bluetooth Low Energy (Smart Bluetooth).
 
-Add a property to the MainPage class for RemoteDevice instance.
+Add a property to the `MainPage` class for RemoteDevice instance.
 
 ```csharp
 private RemoteDevice _arduino; 
 ```
 
-In the constructor of the MainPage class, create a new instance of the RemoteDevice class and pass the serial instance to provide a way to access surface API for Arduino. And then begin to set up the connection. So insert following code to the constructor.
+In the constructor of the `MainPage` class, create a new instance of the RemoteDevice class and pass the serial instance to provide a way to access surface API for Arduino. And then begin to set up the connection. So insert following code to the constructor.
 
 ```csharp
 _arduino = new RemoteDevice(usb); 
@@ -214,7 +214,7 @@ public void Setup()
 }
 ```
 
-And insert following code in the constructor of the MainPage class to register this delegate to the event for device is read.
+And insert following code in the constructor of the `MainPage` class to register this delegate to the event for device is read.
 
 ```csharp
 _arduino.DeviceReady += Setup;
@@ -259,7 +259,7 @@ It will be better if we update the UI to support toggle LED.
 
 ## App UI
 
-To toggle LED from on to off and from off to on, we need add following member property and method in the MainPage class.
+To toggle LED from on to off and from off to on, we need add following member property and method in the `MainPage` class.
 
 1. Add a property indicating whether the LED is on.
 2. Add a method to check the property and to turn on/off the LED.
@@ -283,7 +283,7 @@ And we need update Setup() method.
 
 1. Set its pin mode as OUTPUT.
 2. Read its pin state.
-3. Set property IsOn of the MainPage class to the correct value by the pin state.
+3. Set property IsOn of the `MainPage` class to the correct value by the pin state.
 
 Code is following.
 
@@ -303,6 +303,6 @@ private void Setup()
 } 
 ```
 
-Then add a button in UI to call Toggle() method when click or tap. The app can run in PCs, mobile phones, IoT devices, etc.
+Then add a button in UI to call `Toggle()` method when click or tap. The app can run in PCs, mobile phones, IoT devices, etc.
 
 Enjoy!
