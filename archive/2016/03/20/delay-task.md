@@ -87,11 +87,7 @@ return (modelArg?: any) => {
     token++;
     if (!!timeout)
         clearTimeout(timeout);
-    timeout = setTimeout(
-        handler,
-        options.delay,
-        modelArg,
-        token);
+    timeout = setTimeout(handler, options.delay, modelArg, token);
 };
 ```
 
@@ -118,10 +114,7 @@ export function delay(options: DelayOptionsContract)
         token++;
         if (!!timeout)
             clearTimeout(timeout);
-        timeout = setTimeout(
-            handler,
-            options.delay != null ? options.delay : 0,
-            modelArg, token);
+        timeout = setTimeout(handler, options.delay != null ? options.delay : 0, modelArg, token);
     };
 }
 ```
