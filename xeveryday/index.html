@@ -241,6 +241,7 @@
         }
         footer {
             background-color: rgba(24, 24, 24, 0.8);
+            min-height: 60px;
         }
         footer > div {
             width: 100%;
@@ -282,6 +283,7 @@
             color: #FF6;
         }
     </style>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js" ></script>
 </head>
 <body>
     <header>
@@ -293,7 +295,7 @@
             </h1>
             <ul>
                 <li>
-                    <a href="#">Weibo</a>
+                    <a href="http://weibo.com/liuhuidaisy">Weibo</a>
                 </li>
                 <li>
                     <a href="#">Facebook</a>
@@ -367,50 +369,7 @@
         </div>
     </section>
     <section class="list">
-        <ul>
-            <li class="big">
-                <span>Jul</span>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li><li class="tile">
-                <img alt="Thumb" src="images/x_e_sample.jpg" />
-                <strong>#10999</strong>
-                <em>Apr 1, 2016</em>
-            </li>
+        <ul id="xe_list_all">
         </ul>
     </section>
     <section class="page">
@@ -441,5 +400,17 @@
             </ul>
         </div>
     </footer>
+    <script type="text/javascript">
+    <!--
+        var ulEle = document.getElementById("xe_list_all");
+        ulEle.innerHTML = '<li class="big"><span>Jul</span></li>';
+        for (var i = 0; i < 12; i++) {
+            var itemEle = document.createElement("li");
+            itemEle.className = "tile";
+            itemEle.innerHTML = '<img alt="Thumb" src="images/x_e_sample.jpg" /><strong>#10999</strong><em>Apr 1, 2016</em>';
+            ulEle.appendChild(itemEle);
+        }
+    //-->
+    </script>
 </body>
 </html>
