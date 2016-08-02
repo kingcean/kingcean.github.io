@@ -4,292 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable=yes, width=400" />
     <title>X Everyday</title>
-    <style type="text/css">
-        body {
-            color: #CCC;
-            font-family: 'Segoe UI', "Helvetica Neue", Tahoma, '微软雅黑' ,'PingFang SC', 'Microsoft JhengHei', Arial, Geneva, Verdana, sans-serif, "Segoe UI Symbol";
-            font-size: 14px;
-            background-color: #333;
-            padding: 0;
-            margin: 0;
-        }
-        a {
-            color: #CCC;
-            text-decoration: none;
-        }
-        a:hover {
-            color: #FF6;
-        }
-        header {
-            height: 59px;
-            position: fixed;
-            background-color: rgba(24, 24, 24, 0.8);
-            padding: 1px 0 0 0;
-            margin: 0;
-            border-bottom: 1px solid rgba(64, 64, 64, 0.9);
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 10000;
-        }
-        header > div {
-            line-height: 50px;
-            width: 100%;
-            max-width: 1000px;
-            padding-top: 9px;
-            margin: 0 auto;
-            position: relative;
-        }
-        header > div > h1 {
-            width: 200px;
-            height: 58px;
-            padding: 0 10px;
-            margin: 0;
-        }
-        header > div > h1 > a > img {
-            width: 154px;
-            height: 30px;
-            border: 0 none transparent;
-            opacity: 0.8;
-        }
-        header > div > ul {
-            padding: 0;
-            margin: 0;
-            display: block;
-            list-style: none;
-            position: absolute;
-            top: 9px;
-            right: 10px;
-            bottom: 0;
-        }
-        header > div > ul > li {
-            line-height: 50px;
-            padding: 0 10px;
-            margin: 0;
-            display: inline-block;
-            list-style: none;
-        }
-        header > div > ul > li > a {
-            color: #CCC;
-            text-decoration: none;
-        }
-        header > div > ul > li > a:hover {
-            color: #FF6;
-        }
-        menu {
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            display: block;
-        }
-        menu > ul {
-            line-height: 40px;
-            width: 100%;
-            height: 40px;
-            max-width: 1000px;
-            padding: 60px 0 0 0;
-            margin: 0 auto;
-            display: block;
-            list-style: none;
-            overflow: hidden;
-        }
-        menu > ul + ul {
-            height: auto;
-            padding-top: 0;
-            border-top: 1px solid #444;
-        }
-        menu > ul > li {
-            padding: 0 10px;
-            margin: 0;
-            display: inline-block;
-            list-style: none;
-        }
-        menu > ul > li > a {
-            color: #CCC;
-            text-decoration: none;
-        }
-        menu > ul > li.selected > a {
-            color: #F66;
-        }
-        menu > ul > li > a:hover {
-            color: #FF6;
-        }
-        section.slide {
-            background-color: #444;
-            height: 320px;
-            display: block;
-            overflow: hidden;
-        }
-        section.slide > div {
-            background-image: url(images/x_e_sample.jpg);
-            background-size: cover;
-            height: 360px;
-            margin: -20px 0;
-        }
-        section.list {
-            display: block;
-        }
-        section.list > h3 {
-            font-size: 16px;
-            font-weight: lighter;
-            font-style: normal;
-            width: 100%;
-            max-width: 1000px;
-            padding: 10px;
-            margin: 0 auto;
-            box-sizing: border-box;
-            cursor: default;
-        }
-        section.list > ul {
-            width: 100%;
-            max-width: 1000px;
-            padding: 10px 0;
-            margin: 0 auto;
-            display: block;
-            list-style: none;
-        }
-        section.list > ul > li {
-            font-size: 12px;
-            background-color: rgba(24, 24, 24, 0.8);
-            width: 180px;
-            height: 218px;
-            padding: 0;
-            margin: 9px;
-            border: 1px solid rgba(64, 64, 64, 0.9);
-            border-radius: 4px;
-            display: inline-block;
-            list-style: none;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: 0.6s;
-        }
-        section.list > ul > li.tile {
-            box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
-        }
-        section.list > ul > li.tile:hover {
-            border-color: #CCC;
-            background-color: rgba(20, 20, 20, 1);
-            transition: 0.2s;
-        }
-        section.list > ul > li.tile > img {
-            width: 180px;
-            height: 180px;
-            padding: 0;
-            margin: 0;
-            border-bottom: 0 none transparent;
-            display: block;
-        }
-        section.list > ul > li.tile > strong {
-            font-weight: normal;
-            font-style: normal;
-            line-height: 30px;
-            width: 160px;
-            height: 30px;
-            padding: 0 80px 0 10px;
-            overflow: hidden;
-        }
-        section.list > ul > li.tile > em {
-            font-weight: normal;
-            font-style: normal;
-            text-align: right;
-            line-height: 30px;
-            width: 80px;
-            height: 30px;
-            position: absolute;
-            top: 180px;
-            right: 10px;
-            bottom: 10px;
-            overflow: hidden;
-        }
-        section.list > ul > li.big {
-            cursor: default;
-        }
-        section.list > ul > li.big > span {
-            color: rgba(64, 64, 64, 0.9);
-            font-size: 80px;
-            display: block;
-            position: absolute;
-            right: 1px;
-            bottom: 1px;
-        }
-        section.page > ul {
-            text-align: center;
-            padding: 0 0 10px 0;
-            margin: 0;
-            display: block;
-            list-style: none;
-        }
-        section.page > ul > li {
-            padding: 0;
-            margin: 0;
-            display: inline-block;
-        }
-        section.page > ul > li > a {
-            color: #CCC;
-            text-decoration: none;
-            line-height: 40px;
-            padding: 0 30px;
-            margin: 0;
-            display: block;
-        }
-        section.page > ul > li > a:hover {
-            color: #FF6;
-        }
-        section.page > ul > li.selected > a {
-            background-color: rgba(64, 64, 64, 0.9);
-        }
-        footer {
-            background-color: rgba(24, 24, 24, 0.8);
-            min-height: 60px;
-        }
-        footer > div {
-            width: 100%;
-            max-width: 1000px;
-            padding: 10px 0;
-            margin: 0 auto;
-            position: relative;
-        }
-        footer > div > div {
-            line-height: 20px;
-            padding: 0 10px;
-        }
-        footer > div > div > strong {
-            font-weight: normal;
-            font-style: normal;
-        }
-        footer > div > ul {
-            padding: 0;
-            margin: 0;
-            display: block;
-            list-style: none;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            bottom: 10px;
-        }
-        footer > div > ul > li {
-            line-height: 20px;
-            padding: 0 10px;
-            margin: 0;
-            display: inline-block;
-            list-style: none;
-        }
-        footer > div > ul > li > a {
-            color: #999;
-            text-decoration: none;
-        }
-        footer > div > ul > li > a:hover {
-            color: #FF6;
-        }
-    </style>
+    <link href="css/common.css" media="all" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js" ></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js" ></script>
 </head>
 <body>
     <header>
         <div>
             <h1>
-                <a href="#">
+                <a href="http://xeveryday.com">
                     <img alt="X Everyday" src="images/logo0_white.png" />
                 </a>
             </h1>
@@ -306,82 +29,42 @@
             </ul>
         </div>
     </header>
-    <menu>
-        <ul>
-            <li class="selected">
-                <a href="#">2015</a>
-            </li>
-            <li>
-                <a href="#">2014</a>
-            </li>
-            <li>
-                <a href="#">2013</a>
-            </li>
-            <li>
-                <a href="#">2012</a>
-            </li>
-            <li>
-                <a href="#">2011</a>
+    <menu id="xe_menu" style="display: none; ">
+        <ul data-bind="foreach: years">
+            <li data-bind="css: { 'selected': $root.selectedY === $data }">
+                <a data-bind="text: $data, attr: { href: '?year=' + $data + '&month=' + ($root.selectedM + 1), title: $data }"></a>
             </li>
         </ul>
-        <ul>
-            <li>
-                <a href="#">Dec</a>
-            </li>
-            <li>
-                <a href="#">Nov</a>
-            </li>
-            <li>
-                <a href="#">Oct</a>
-            </li>
-            <li>
-                <a href="#">Sep</a>
-            </li>
-            <li>
-                <a href="#">Aug</a>
-            </li>
-            <li class="selected">
-                <a href="#">Jul</a>
-            </li>
-            <li>
-                <a href="#">Jun</a>
-            </li>
-            <li>
-                <a href="#">May</a>
-            </li>
-            <li>
-                <a href="#">Apr</a>
-            </li>
-            <li>
-                <a href="#">Mar</a>
-            </li>
-            <li>
-                <a href="#">Feb</a>
-            </li>
-            <li>
-                <a href="#">Jan</a>
+        <ul data-bind="foreach: months">
+            <li data-bind="css: { 'selected': $root.selectedM === 11 - $index() }">
+                <a data-bind="text: $data, attr: { href: '?year=' + $root.selectedY + '&month=' + (12 - $index()), title: $data }"></a>
             </li>
         </ul>
     </menu>
-    <section class="slide">
-        <div>
+    <section id="xe_slide" class="slide">
+        <div style="background-image: url(images/x_e_sample.jpg);">
 
         </div>
     </section>
-    <section class="list">
+    <section id="xe_list" class="list" style="display: none; ">
         <ul id="xe_list_all">
+            <li class="big">
+                <span data-bind="text: monthText"></span>
+            </li><!-- ko foreach: list --><li class="tile">
+                <img data-bind="attr: { alt: name, src: url }" /><strong data-bind="text: '#' + index"></strong>
+            </li><!-- /ko -->
         </ul>
     </section>
-    <section class="page">
+    <section id="xe_page" class="page" style="display: none; ">
         <ul>
             <li>
-                <a href="#">&lt; Aug</a>
+                <a data-bind="text: '&lt; &nbsp;' + prevText, attr: { href: '?year=' + prevY + '&month=' + (prevM + 1) }">&lt; Previous</a>
             </li>
             <li class="selected">
-                <a href="#">Jul</a>
+                <a data-bind="text: curText, attr: { href: '?year=' + curY + '&month=' + (curM + 1) }">Current</a>
             </li>
             <li>
-                <a href="#">Jun &gt;</a>
+                <a data-bind="text: nextText + '&nbsp; &gt;', attr: { href: '?year=' + nextY + '&month=' + (nextM + 1) }">Next &gt;</a>
             </li>
         </ul>
     </section>
@@ -402,14 +85,59 @@
     </footer>
     <script type="text/javascript">
     <!--
-        var ulEle = document.getElementById("xe_list_all");
-        ulEle.innerHTML = '<li class="big"><span>Jul</span></li>';
+        var list = [];
         for (var i = 0; i < 12; i++) {
-            var itemEle = document.createElement("li");
-            itemEle.className = "tile";
-            itemEle.innerHTML = '<img alt="Thumb" src="images/x_e_sample.jpg" /><strong>#10999</strong><em>Apr 1, 2016</em>';
-            ulEle.appendChild(itemEle);
+            list.push({
+                name: null,
+                index: 10999,
+                url: "images/x_e_sample.jpg"
+            });
         }
+
+        var now = new Date();
+        var selectedYear = now.getFullYear();
+        var selectedMonth = now.getMonth();
+        var firstYear = 2011;
+        var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+        menuModel = {
+            years: [],
+            months: [],
+            selectedY: selectedYear,
+            selectedM: selectedMonth
+        };
+        menuModel.months = ([].concat(months)).reverse();
+        for (var i = now.getFullYear(); i >= firstYear; i--) {
+            menuModel.years.push(i);
+        }
+
+        var menuEle = document.getElementById("xe_menu");
+        menuEle.style.display = "";
+        ko.applyBindings(menuModel, menuEle);
+
+        var listModel = {
+            monthText: months[selectedMonth],
+            list: list
+        };
+
+        var listEle = document.getElementById("xe_list");
+        listEle.style.display = "";
+        ko.applyBindings(listModel, listEle);
+
+        var pageModel = {
+            curText: months[selectedMonth],
+            curY: selectedYear,
+            curM: selectedMonth,
+            prevText: selectedMonth > 0 ? months[selectedMonth - 1] : months[11],
+            prevY: selectedMonth > 0 ? selectedYear : selectedYear - 1,
+            prevM: selectedMonth > 0 ? selectedMonth - 1 : 11,
+            nextText: selectedMonth < 11 ? months[selectedMonth + 1] : months[0],
+            nextY: selectedMonth < 11 ? selectedYear : selectedYear + 1,
+            nextM: selectedMonth < 11 ? selectedMonth + 1 : 0
+        };
+
+        var pageEle = document.getElementById("xe_page");
+        pageEle.style.display = "";
+        ko.applyBindings(pageModel, pageEle);
     //-->
     </script>
 </body>
