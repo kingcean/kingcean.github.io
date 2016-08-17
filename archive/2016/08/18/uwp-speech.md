@@ -187,9 +187,11 @@ Create Light.grxml file in Assets folder of the proejct. In Properties window fo
 </gramma>
 ```
 
-在这里，`grammar` 根节点里的 `xml:lang` 属性，用于定义这个 SRGS 文件所支持的语言，只有当当前语音识别的语音于这个值匹配的时候，该文件中描述的语音识别规则才有效；而 `root` 属性里需要定义一个规则的 ID，在 `grammar` 根节点里可以定义多套规则，但是入口只有1个，即此属性中定义的；其它属性可参考 [MSDN documentation](https://msdn.microsoft.com/zh-cn/library/hh361670)。在 `grammar` 根节点里面，必须至少有一个 `rule` 节点，并需要定义其 `id` 属性，用于检索。`id` 值和 `grammar` 根节点 `root` 属性定义的值相同的 `rule` 节点，即为此文件所指定的主规则；其它规则通常是被用于引用的。`rule` 节点中所支持的属性可参阅 [MSDN documentation](https://msdn.microsoft.com/zh-cn/library/hh361673)。
+Here, the attribute `xml:lang` in root node `grammar` is used to define which language is for this SRGS file to recognize. It will process this file only when the current language using is matching. The attribute `root` is used to define the ID fo the rule which is active when the grammar is loaded by a speech recognition engine. Rules that are not the root rule or that are not referenced by the root rule cannot be used for recognition. For this reason, the root rule often contains references to other rules that must be active when the grammar loads. See [MSDN documentation](https://msdn.microsoft.com/zh-cn/library/hh361670) for details  about `grammar` node.
 
-由于我们计划控制灯的开关，首先，需要一项规则是打开灯，因此，我们在 `grammar` 根节点中新建一个 `rule` 节点，并指定一个 ID `TurnOn`，然后在里面来实现这个规则。具体的实现方式是，在里面添加一个 `item` 节点，该节点的目的是指定预期可能说的话。
+The root node `grammar` should contain at least one `rule` node. The node `rule` should has an attribute `id` for identifying. See [MSDN documentation](https://msdn.microsoft.com/zh-cn/library/hh361673) for details about `rule` node.
+
+The plan is to control the light. So we need add a rule for turning on it firstly. Add a new node `rule` in the root node `grammar`. Set its ID as `TurnOn` and add another node `item` in it to mark what we expect the user will say for this rule.
 
 ```xml
 <rule id="TurnOn">
@@ -243,7 +245,7 @@ This is for turning on the light. And following is about turning off the light.
 </rule>
 ```
 
-不过，写到这里，这些规则并未能被调用，因为刚才说到，只有 `root` 指定的规则才是入口规则，所以我们需要改写前面的 `Control` 规则。改写的内容其实很简单，也是一个多选一的情况，只要说出开灯或关灯的任一命令，那么就执行。但如何指定执行哪个已定义的规则呢？可以使用 `ruleref` 节点，其 `uri` 属性用于指定是引用哪个规则，其中的值采用类似 CSS 中的选择器的语法方式，例如，用 # 开头即表示后面跟着的是对应的 ID。
+However, the rules `TurnOn` and `TurnOff` cannot be loaded currently. Only the rule with the ID which is also marked in `root` is active. So we need modify the `Control` rule to add the reference of these rules. Node `ruleref` is used to add reference to other node. It contains an attribute `uri` which is used to store the selector path of the target rule. Use # as beginning to mark the following letters are about the ID.
 
 ```xml
 <rule id="Control">
@@ -262,7 +264,7 @@ This is for turning on the light. And following is about turning off the light.
 
 当语音识别进入 SRGS 后，并得出结果，我们需要知道在执行结束后识别最后走进了哪一个规则，因为只有如此，才能决定接下来执行什么实际的操作。与前面两个约束不同，前面的两个约束可以通过所执行到的约束类型和简单分析识别到的语句来进行判断；这个 SRGS 的结果显得更为复杂。首先，我们需要根据结果返回的约束类型来判断，是否识别出的结果为这个约束下的；然后，我们可以获取其所执行的规则路径，来明白其所识别的逻辑结果。
 
-规则路径其实是个字符串列表，即我们之前在 `rule` 中定义的 ID 的顺序执行列表，例如，当我们说出“开灯”时，其返回的时 `["Control", "TurnOff"]`。我们来新写一个方法来处理这个结果。由于第1个规则肯定时根节点，因此我们在这个示例中，只需要简单判断第2个路径是什么即可。
+Rule path is a string collection. It is the IDs we defined in the `rule` nodes. For example, when we said "turn on the light", it will return `["Control", "TurnOff"]`. So let's write a new member method to process this. We need just check the 2nd item in the list for next step because the 1st one is always `Control` in this example.
 
 ```csharp
 private Control(IList<string> path)
@@ -365,11 +367,8 @@ string Ssml =
     "Goodbye <prosody rate='slow' contour='(0%,+20Hz) (10%,+30%) (40%,+10Hz)'>World</prosody>" +
     "</speak>";
 
-// The object for controlling the speech synthesis engine (voice).
-var synth = new SpeechSynthesizer();
-
 // Generate the audio stream from plain text.
-var stream = await synth.synthesizeSsmlToStreamAsync(Ssml);
+var stream = await _synth.synthesizeSsmlToStreamAsync(Ssml);
 
 // Send the stream to the media object.
 mediaElement.SetSource(stream, stream.ContentType);

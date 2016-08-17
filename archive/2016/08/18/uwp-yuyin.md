@@ -376,11 +376,8 @@ string Ssml =
     "Goodbye <prosody rate='slow' contour='(0%,+20Hz) (10%,+30%) (40%,+10Hz)'>World</prosody>" +
     "</speak>";
 
-// The object for controlling the speech synthesis engine (voice).
-var synth = new SpeechSynthesizer();
-
 // Generate the audio stream from plain text.
-var stream = await synth.synthesizeSsmlToStreamAsync(Ssml);
+var stream = await _synth.synthesizeSsmlToStreamAsync(Ssml);
 
 // Send the stream to the media object.
 mediaElement.SetSource(stream, stream.ContentType);
