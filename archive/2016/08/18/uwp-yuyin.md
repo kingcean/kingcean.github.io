@@ -2,9 +2,15 @@
 
 众所周知，在 Windows 中的许多个版本都包含有语音功能，特别是在 Windows 10 上，Cortana（小娜）更是非常智能。同时，对于开发者而言，我们也能非常方便的在其中融入我们的功能，不过本文并不是想说这个。这里将介绍如何开发我们自己的 UWP 应用的语音交互，即，在我们的 UWP 内部，支持用户的语音命令和语音输入，并提供语音反馈。
 
-## 语音识别
+## 准备工作
 
-首先，在 Visual Studio 2015 Update 3 或更高版本中，创建一个 UWP 项目。打开 MainPage.xaml.cs 文件，我们需要先在其中加入以下命名空间，这些将分别用于处理语音识别、语音合成和文件访问。
+首先，在 Visual Studio 2015 Update 3 或更高版本中，创建一个 UWP 项目。并在 Package.appxmainfest 中，在 Capabilities 中勾选“麦克风”，或者直接用文本编辑器打开该文件，在 `Capabilities` 节点中，插入以下代码。
+
+```xml
+<DeviceCapability Name="microphone" />
+```
+
+打开 MainPage.xaml.cs 文件，我们需要先在其中加入以下命名空间，这些将分别用于处理语音识别、语音合成和文件访问。
 
 ```csharp
 using Windows.Media.SpeechRecognition;
@@ -12,11 +18,7 @@ using Windows.Media.SpeechSynthesis;
 using Windows.Storage;
 ```
 
-并在 Package.appxmainfest 中，在 Capabilities 中勾选“麦克风”，或者直接用文本编辑器打开该文件，在 `Capabilities` 节点中，插入以下代码。
-
-```xml
-<DeviceCapability Name="microphone" />
-```
+## 语音识别
 
 现在，我们需要在 `MainPage` 类里实现一个方法，用于执行语音识别，并返回结果。在处理语音识别的过程当中，需要用到一个名为 `SpeechRecognizer` 的类所创建的实例，该实例可被复用，以便多次处理语音识别任务。因此，我们还需要一个字段来存储这个实例，并在该方法首次调用时，初始化这个实例。另外，由于该实例可以添加一些语音识别约束，用于描述场景，所以在使用前，需要先对这些约束进行编译，即使并没有添加任何约束。该编译过程和语音识别都是异步的，因此我们需要将这个方法也声明为异步方法。
 
@@ -51,16 +53,16 @@ private async Task<SpeechRecognitionResult> SpeechRecognizeAsync() {
 ```csharp
 private async void Speech_Click(object sender, RoutedEventArgs e)
 {
-    // Get the recognition result.
+    // 获取语音识别结果。
     var speechRecognitionResult = await SpeechRecognizeAsync();
 
-    // Pops up a dialog to show the result.
+    // 弹出一个对话框，用于展示识别出来的文本。
     var messageDialog = new Windows.UI.Popups.MessageDialog(speechRecognitionResult.Text, "你刚说了");
     await messageDialog.ShowAsync();
 }
 ```
 
-现在，按下 F5 运行，可以发现，界面上有一个按钮，点击后，说出一句话，稍等片刻，即会弹出一个标题为“Text spoken”的对话框，里面包含了刚才所说的内容。
+现在，按下 F5 运行，可以发现，界面上有一个按钮“语音”，点击后，说出一句话，稍等片刻，即会弹出一个标题为“你刚说了”的对话框，里面包含了刚才所说的内容。
 
 ## 使用图形输入界面
 
@@ -71,7 +73,7 @@ private async void Speech_Click(object sender, RoutedEventArgs e)
 使用系统默认的语音识别界面，仅需把 `SpeechRecognizeAsync()` 成员方法中最后一步的 `speechRecognizer.RecognizeAsync()` 调用，替换成 `speechRecognizer.RecognizeWithUIAsync()` 即可。
 
 ```csharp
-// Start recognition.
+// 开始识别，并呈现系统默认界面。
 return await _speechRecognizer.RecognizeWithUIAsync();
 ```
 
@@ -135,7 +137,7 @@ _speechRecognizer.Constraints.Add(webGrammar);
 
 ```csharp
 // 获取歌曲列表。
-// 此处为 Hard Code 了一些歌曲，实际应该通过程序去歌曲库中读取。
+// 此处硬编码了一些歌曲，实际应该通过程序去歌曲库中读取。
 var songs = new [] { "曲目一", "另一首歌", "未命名歌曲" };
 
 // 生成接受的语音列表。
@@ -162,8 +164,13 @@ _speechRecognizer.Constraints.Add(pauseConstraint);
 `SpeechRecognitionGrammarFileConstraint` 类用于引入一个 SRGS 文件作为语音识别约束。例如下方这样，我们假设我们需要控制一个灯的开关，我们需要先读取一个 SRGS 类型的文件（.grxml），然后作为该类的第1个参数传入，第2个参数为可选的 Tag（即 ID）。
 
 ```csharp
+// 获取文件。
 var grammarFile = await GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Light.grxml"));
+
+// 创建 SRGS 文件约束。
 var srgsConstraint = new SpeechRecognitionGrammarFileConstraint(grammarFile, "light");
+
+// 添加约束。
 _speechRecognizer.Constraints.Add(srgsConstraint);
 ```
 
@@ -205,20 +212,20 @@ _speechRecognizer.Constraints.Add(srgsConstraint);
 </rule>
 ```
 
-事实上，有些人很礼貌，即使和计算机说话，可能会带上“请”之类的敬词，因此，我们还需要对其进行改造以下，在这个多选一的预期的前面，添加可能会说的内容。由于不确定是否会说，因此我们可以通过添加一个 `item` 节点，并通过其 `repeat` 属性来设置可能的重复次数来做到，由于最多可能只会说一个“请”字，那么重复次数的范围应该是0到1之间。经过优化，最后该节点可能如下所示。
+事实上，有些人很礼貌，即使和计算机说话，也可能会带上“请”之类的敬词，因此，我们还需要对其进行改造以下，在这个多选一的预期的前面，添加可能会说的内容。由于不确定是否会说，因此我们可以通过添加一个 `item` 节点，并通过其 `repeat` 属性来设置可能的重复次数来做到，由于最多可能只会说一个“请”字，那么重复次数的范围应该是0到1之间。经过优化，最后该节点可能如下所示。
 
 ```xml
-<rule id="TurnOnLED">
+<rule id="TurnOn">
     <item repeat="0-1">请</item>
     <item repeat="0-1">帮我</item>
     <item>
         <one-of>
-        <item>打开</item>
-        <item>开灯</item>
-        <item>亮灯</item>
-        <item>打开灯</item>
-        <item>把灯打开</item>
-        <item>快开灯</item>
+            <item>打开</item>
+            <item>开灯</item>
+            <item>亮灯</item>
+            <item>打开灯</item>
+            <item>把灯打开</item>
+            <item>快开灯</item>
         </one-of>
     </item>
 </rule>
@@ -234,12 +241,12 @@ _speechRecognizer.Constraints.Add(srgsConstraint);
     <item repeat="0-1">帮我</item>
     <item>
         <one-of>
-        <item>关闭</item>
-        <item>关灯</item>
-        <item>关上</item>
-        <item>把灯关了</item>
-        <item>把灯关上</item>
-        <item>快关灯</item>
+            <item>关闭</item>
+            <item>关灯</item>
+            <item>关上</item>
+            <item>把灯关了</item>
+            <item>把灯关上</item>
+            <item>快关灯</item>
         </one-of>
     </item>
 </rule>
@@ -248,7 +255,7 @@ _speechRecognizer.Constraints.Add(srgsConstraint);
 不过，写到这里，这些规则并未能被调用，因为刚才说到，只有 `root` 指定的规则才是入口规则，所以我们需要改写前面的 `Control` 规则。改写的内容其实很简单，也是一个多选一的情况，只要说出开灯或关灯的任一命令，那么就执行。但如何指定执行哪个已定义的规则呢？可以使用 `ruleref` 节点，其 `uri` 属性用于指定是引用哪个规则，其中的值采用类似 CSS 中的选择器的语法方式，例如，用 # 开头即表示后面跟着的是对应的 ID。
 
 ```xml
-<rule id="OnOrOff">
+<rule id="Control">
     <one-of>
         <item>
             <ruleref uri="#TurnOn"/>
@@ -287,7 +294,7 @@ private Control(IList<string> path)
 然后，我们还需要改写前面所写的 `Speech_Click()` 方法，以在该 SRGS 约束被执行到时调用上述方法。
 
 ```csharp
-// Get the recognition result.
+// 获取语音识别结果。
 var speechRecognitionResult = await SpeechRecognizeAsync();
 
 // 根据所执行到的约束来决定执行的内容。
@@ -298,11 +305,11 @@ switch (speechRecognitionResult.Constraint.Tag)
         Control(speechRecognitionResult.RulePath.ToList());
         break;
     case "play":
-        // Play something.
-        var songName = speechRecognitionResult.Text.Replace("播放", "").Trim();
+        // 播放某首歌。
+        var songName = speechRecognitionResult.Text.Substring("播放".Length).Trim();
         break;
     case "pauseAndResume":
-        // Pause something.
+        // 暂停或继续播放。
         break;
 }
 ```
@@ -320,21 +327,20 @@ switch (speechRecognitionResult.Constraint.Tag)
 接下来，我们需要通过语音合成，来将一段指定的文本，以音频的形式让计算机朗读出来。我们新写一个方法，用于将一段文本转为语音，并通过刚才新建的 `MediaElement` 控件播放出来。
 
 ```csharp
+private SpeechSynthesizer _synth = new SpeechSynthesizer();
+
 private async void Speak(string value)
 {
-    // The object for controlling the speech synthesis engine (voice).
-    var synth = new SpeechSynthesizer();
-
-    // Generate the audio stream from plain text.
+    // 创建一个文本转语音的流。
     var stream = await synth.SynthesizeTextToStreamAsync(value);
 
-    // Send the stream to the media object.
+    // 将流发送到 MediaElement 控件并播放。
     mediaElement.SetSource(stream, stream.ContentType);
     mediaElement.Play();
 }
 ```
 
-然后我们可以对前面缩写的 `Control(IList<string> path)` 成员方法中的内容进行改写。
+然后我们可以对前面所写的 `Control(IList<string> path)` 成员方法中的内容进行改写。
 
 ```csharp
 private Control(IList<string> path)
