@@ -81,10 +81,10 @@ If you want to customize the content of the dialog, you can update `_speechRecog
 
 ```csharp
 // Get or set the heading text that is displayed on the Listening screen.
-_speechRecognizer.UIOptions.AudiblePrompt = "请问你打算要我做什么？";
+_speechRecognizer.UIOptions.AudiblePrompt = "Can I help you?";
 
 // Get or set the string of speeking hint shown on the Listening screen.
-_speechRecognizer.UIOptions.ExampleText = "请尝试说：开灯、关灯。";
+_speechRecognizer.UIOptions.ExampleText = "Try: turn on the light.";
 
 // Get or set a value indicating whether the recognized text is spoken back to the user on the Heard you say screen.
 _speechRecognizer.UIOptions.IsReadBackEnabled = false;
