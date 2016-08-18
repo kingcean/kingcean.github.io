@@ -367,19 +367,19 @@ private Control(IList<string> path)
 刚刚的语音播放其实采用的是正常模式，但有时可能需要对内容的语音播放进行细节上的控制，例如调整音调、重读、语速等，甚至字或词的发音。这时候，我们需要用到语音合成标记语言 [SSML](http://www.w3.org/TR/speech-synthesis/) 来进行处理。例如以下示例。
 
 ```csharp
-// The string to speak with SSML customizations.
+// 创建一个字符串，包含 SSML 描述内容，用于朗读。
 string Ssml =
-    @"<speak version='1.0' " +
-    "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>" +
-    "Hello <prosody contour='(0%,+80Hz) (10%,+80%) (40%,+80Hz)'>World</prosody> " + 
+    @"<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>" +
+    "<prosody rate='slow'>你好吗？</prosody> " + 
     "<break time='500ms'/>" +
-    "Goodbye <prosody rate='slow' contour='(0%,+20Hz) (10%,+30%) (40%,+10Hz)'>World</prosody>" +
     "</speak>";
 
-// Generate the audio stream from plain text.
+// 用合成器根据文本创建音频流。
 var stream = await _synth.synthesizeSsmlToStreamAsync(Ssml);
 
-// Send the stream to the media object.
+// 将音频播放出来。
 mediaElement.SetSource(stream, stream.ContentType);
 mediaElement.Play();
 ```
+
+节点 `prosody` 用于控制朗读的语速、音调、音量等，详见 [MSDN 文档](https://msdn.microsoft.com/zh-cn/library/windows/apps/hh378462.aspx)。

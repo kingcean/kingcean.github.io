@@ -109,7 +109,7 @@ There are three kinds of useful built-in speech recognition constraints used fro
 
 Adding these constraints should before compiling. In the above sample, these codes should be before calling `await _commandSpeechRecognizer.CompileConstraintsAsync();` in `SpeechRecognizeAsync()` member method.
 
-语音识别约束中有一个 `Tag` 成员属性，用于作为该约束的 ID，设置后，在之后的语音识别结束时，可以用于判断时基于哪个约束进行识别的。例如，可能添加了多个识别约束，每个约束都有不同的预期以及对应的处理方式，当语音识别结束时，我们需要知道当前用户所说的内容，是符合哪一个约束所对应的预期的，这样我们才知道接下来应该如何处理其语音输入的内容，这时，可以根据 ID 来进行简单的判断，因为语音识别结果 `SpeechRecognitionResult` 类中，会包含 `Constraint` 属性，这个属性即是之前所实际采用的约束。当然，也可以直接判断约束实例本身，而非通过这个 ID 来区分。不过需要注意的是，结果中的这个属性可能为空，所以可能要处理为空的可能。
+The `Tag` member property in `ISpeechRecognitionConstraint` is used to get or set to identify the constraint. The constraint which speech recognizer used will be in `SpeechRecognitionResult.Constraint` member property. We can use this to match the next business logic to process after recognizing. For example, we have added several constraints to the speech recognizer instance. After recognizing, we can test this value to get which constraint the recognizer uses so that we can route the next step to what we want. To make programming simple, we can just test its `Tag` property to identify. And we need check if it is null for the `SpeechRecognitionResult.Constraint`.
 
 ## Specify a pre-defined grammar
 
@@ -262,7 +262,7 @@ However, the rules `TurnOn` and `TurnOff` cannot be loaded currently. Only the r
 
 ## Rule path handling for SRGS
 
-当语音识别进入 SRGS 后，并得出结果，我们需要知道在执行结束后识别最后走进了哪一个规则，因为只有如此，才能决定接下来执行什么实际的操作。与前面两个约束不同，前面的两个约束可以通过所执行到的约束类型和简单分析识别到的语句来进行判断；这个 SRGS 的结果显得更为复杂。首先，我们需要根据结果返回的约束类型来判断，是否识别出的结果为这个约束下的；然后，我们可以获取其所执行的规则路径，来明白其所识别的逻辑结果。
+When the speech recognizer uses the SRGS constraint to recognize the voice and returns the resuls, we need get the rule path which it runs to continue the next steps.
 
 Rule path is a string collection. It is the IDs we defined in the `rule` nodes. For example, when we said "turn on the light", it will return `["Control", "TurnOff"]`. So let's write a new member method to process this. We need just check the 2nd item in the list for next step because the 1st one is always `Control` in this example.
 
@@ -360,11 +360,9 @@ To control the pronounciation in details, we can create an audio stream and outp
 ```csharp
 // The string to speak with SSML customizations.
 string Ssml =
-    @"<speak version='1.0' " +
-    "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>" +
-    "Hello <prosody contour='(0%,+80Hz) (10%,+80%) (40%,+80Hz)'>World</prosody> " + 
+    @"<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>" +
+    "<prosody rate='slow'>How are you?</prosody> " + 
     "<break time='500ms'/>" +
-    "Goodbye <prosody rate='slow' contour='(0%,+20Hz) (10%,+30%) (40%,+10Hz)'>World</prosody>" +
     "</speak>";
 
 // Generate the audio stream from plain text.
@@ -374,3 +372,5 @@ var stream = await _synth.synthesizeSsmlToStreamAsync(Ssml);
 mediaElement.SetSource(stream, stream.ContentType);
 mediaElement.Play();
 ```
+
+The `prosody` node is used to specifies the pitch, contour, range, rate, duration, and volume for speaking the contained text. See [MSDN documentation](https://msdn.microsoft.com/en-us/library/windows/apps/hh378462.aspx) for details.
