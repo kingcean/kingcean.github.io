@@ -20,7 +20,7 @@ Windows Remote Arduino builds a communication architecture like a three layers c
 
 ![3 Layers](Arduino3Layers.jpg)
 
-Windows Remote Arduino provides a RemoteDevice class for us to access Arduino and I will introduce it in later section.
+Windows Remote Arduino provides a `RemoteDevice` class for us to access Arduino and I will introduce it in later section.
 
 ## Set up Arduino device
 
@@ -244,10 +244,12 @@ So we can control the LED on/off on the breadboard.
 Update the Setup() method as following to update digital pin 6.
 
 ```csharp
+private int _pin = 6;
+
 public void Setup()
 {
-    _arduino.pinMode(6, PinMode.OUTPUT);
-    _arduino.digitalWrite(6, PinState.HIGH);
+    _arduino.pinMode(_pin, PinMode.OUTPUT);
+    _arduino.digitalWrite(_pin, PinState.HIGH);
 }
 ```
 
@@ -267,14 +269,29 @@ To toggle LED from on to off and from off to on, we need add following member pr
 Code is following.
 
 ```csharp
-public bool IsOn { get; private set; } = false;
+public bool IsOn
+{
+    get
+    {
+      _arduino.digitalWrite(_pin, value ? PinState.HIGH : PinState.LOW);
+    }
+
+    set
+    {
+        switch (_arduino.digitalRead(_pin))
+        {
+            case PinState.HIGH:
+                return true;
+            case PinState.LOW:
+                return false;
+        }
+
+        return false;
+    }
+}
 
 public void Toggle()
 {
-    if (IsOn)
-        _arduino.digitalWrite(6, PinState.LOW);
-    else
-        _arduino.digitalWrite(6, PinState.HIGH);
    IsOn = !IsOn;
 }
 ```
@@ -291,16 +308,7 @@ Code is following.
 private void Setup()
 {
     _arduino.pinMode(6, PinMode.OUTPUT);
-    switch (_arduino.digitalRead(6))
-    {
-         case PinState.HIGH:
-             IsOn = true;
-             break;
-         case PinState.LOW:
-             IsOn = false;
-             break;
-    }
-} 
+}
 ```
 
 Then add a button in UI to call `Toggle()` method when click or tap. The app can run in PCs, mobile phones, IoT devices, etc.
