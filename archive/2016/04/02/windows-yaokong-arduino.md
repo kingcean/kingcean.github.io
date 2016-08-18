@@ -269,7 +269,7 @@ _arduino.DeviceReady += Setup;
 
 ![Connect breadboard](WP_20160401_10_15_38_Pro_LI_Screen.jpg)
 
-将之前的 Setup() 方法进行如下修改，从而更新数字 Pin 6 的模式和值。
+将之前的 `Setup()` 方法进行如下修改，从而更新数字 Pin 6 的模式和值。
 
 ```csharp
 private int _pin = 6;
@@ -289,7 +289,7 @@ public void Setup()
 
 ## 添加 App UI
 
-我们现在可以在运行 App 的时候点亮 LED，那么接下来呢？这时，我们需要创建一个 UI 来进行控制该 LED 的开与关。为此我们需要先在 MainPage 类中加入以下成员属性和方法。
+我们现在可以在运行 App 的时候点亮 LED，那么接下来呢？这时，我们需要创建一个 UI 来进行控制该 LED 的开与关。为此我们需要先在 `MainPage` 类中加入以下成员属性和方法。
 
 1. 增加一个成员属性，用于记录 LED 是否处于开启状态。
 2. 增加一个成员方法，其会先检测当前 LED 的开关状态，然后根据情况执行熄灭或点亮的操作。
@@ -324,7 +324,7 @@ public void Toggle()
 }
 ```
 
-同时更新 Setup() 方法。
+同时更新 `Setup()` 方法。
 
 1. 设置该 Pin 模式为输出。
 2. 读取 Pin 值。
@@ -335,10 +335,10 @@ public void Toggle()
 ```csharp
 private void Setup()
 {
-    _arduino.pinMode(6, PinMode.OUTPUT);
+    _arduino.pinMode(_pin, PinMode.OUTPUT);
 }
 ```
 
-然后，在界面中添加一个按钮，当按下或点击时，调用 Toggle() 方法。
+然后，在界面中添加一个按钮，当按下或点击时，调用 `Toggle()` 方法。
 
 这个 App 可以在 PC、手机、IoT 设备中运行。

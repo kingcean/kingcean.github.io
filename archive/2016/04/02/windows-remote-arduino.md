@@ -307,7 +307,7 @@ Code is following.
 ```csharp
 private void Setup()
 {
-    _arduino.pinMode(6, PinMode.OUTPUT);
+    _arduino.pinMode(_pin, PinMode.OUTPUT);
 }
 ```
 
