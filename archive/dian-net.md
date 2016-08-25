@@ -5,3 +5,5 @@ Kingcean 的 [MSDN 博客]
 
 - [Windows 10 编程遥控 Arduino](2016/04/02/windows-yaokong-arduino.md)
 - [UWP 语音](2016/08/18/uwp-yuyin.md)
+
+当前尚有多篇未译
