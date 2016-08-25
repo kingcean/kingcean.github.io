@@ -126,14 +126,12 @@
         </div>
     </section>
     <script type="text/javascript">
-    $.ready(function() {
         var cntEle = document.getElementById("blog_content");
         $.get("../../archive/web.md").then(function (r) {
             cntEle.innerHTML = markdown.toHTML(r);
         }, function (r) {
             cntEle.innerHTML = "Failed to load";
         });
-    });
     </script>
 </body>
 </html>
