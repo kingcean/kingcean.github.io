@@ -437,6 +437,8 @@ export function addSlide(element: HTMLElement | string, options: SlideOptionsCon
 }
 ```
 
+## Test
+
 Now you can have a test. Suppose we have following elements.
 
 ```html
