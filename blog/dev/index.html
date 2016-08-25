@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Kingcean</title>
+    <title>Dev Blog - Kingcean</title>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js" ></script>
     <script type="text/javascript" src="../../js/markdown.min.js" ></script>
     <style type="text/css">
@@ -130,7 +130,7 @@
         var cntEle = document.getElementById("blog_content");
         $.get("../../archive/web.md").then(function (r) {
             cntEle.innerHTML = markdown.toHTML( md_content );
-        }, funciton (ex) {
+        }, function (ex) {
             cntEle.innerHTML = "Failed to load".
         });
     });
