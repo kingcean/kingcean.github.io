@@ -1,4 +1,4 @@
-# [http://git.kingcean.com](http://git.kingcean.com/)
+# [http://github.kingcean.com](http://github.kingcean.com/)
 
 ## Development Blog
 
