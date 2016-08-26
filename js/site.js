@@ -66,13 +66,13 @@ var site = {};
                     if (!item || item.invalid || item.id !== id) return false;
                     $.get("/archive" + item.url).then(function (r2) {
                         var md = new Remarkable();
-                        cntEle.innerHTML = "<section>" + md.render(r2) + "</section>" + cntEle.innerHTML;
+                        cntEle.innerHTML = "<h1>" + item.name + "</h1><section>" + md.render(r2) + "</section>" + cntEle.innerHTML;
                     });
                     return true;
                 });
             }
 
-            cntStr = "<h3>" + r.name + "</h3><ul>";
+            cntStr = "<h1>" + r.name + "</h1><ul>";
             r.list.forEach(function (item) {
                 if (!item || item.invalid) return;
                 cntStr += "<li><a href='?" + item.id + "'>" + item.name + "</a></li>";
