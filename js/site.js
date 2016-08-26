@@ -28,7 +28,8 @@ var site = {};
     site.blogs = function () {
         var cntEle = document.getElementById("blog_content");
         var id = location.search;
-        if (!!id) {
+        if (!!id && id.length > 1) {
+            id = id.substring(1);
             var idEndPos = id.indexOf("?");
             if (idEndPos >= 0) id = id.substring(0, idEndPos);
             idEndPos = id.indexOf("&");
