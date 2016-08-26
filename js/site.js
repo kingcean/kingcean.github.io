@@ -25,8 +25,7 @@ var site = {};
             return null;
     };
 
-    site.blogs = function () {
-        var cntEle = document.getElementById("blog_content");
+    site.firstQuery = function () {
         var id = location.search;
         if (!!id && id.length > 1) {
             id = id.substring(1);
@@ -35,6 +34,20 @@ var site = {};
             idEndPos = id.indexOf("&");
             if (idEndPos >= 0) id = id.substring(0, idEndPos);
         }
+
+        return id;
+    };
+
+    site.head = function () {
+        var cntEle = document.getElementById("page_head");
+        cntEle.innerHTML = '<section><h1><a href="http://www.kingcean.com/">Kingcean</a></h1>\
+            <ul><li><a href="http://blogs.msdn.com/kingcean/">MSDN</a></li><li class="state-selected-t"><a href="http://github.kingcean.com/">GitHub</a></li><li><a href="https://www.facebook.com/kingcean">Facebook</a></li></ul></section>';
+    };
+
+    site.blogs = function () {
+        var cntEle = document.getElementById("blog_content");
+        cntEle.classList.remove("");
+        var id = site.firstQuery();
 
         $.get("config.json").then(function (r) {
             if (!r || !r.list || !(r.list instanceof Array)) return;
@@ -80,7 +93,7 @@ var site = {};
             cntStr += "</ul>";
             cntEle.innerHTML = cntStr;
         }, function (r) {
-            cntEle.innerHTML = "Failed to load";
+            cntEle.innerHTML = "Failed to load.";
         });
     };
     
