@@ -71,7 +71,7 @@ var site = {};
                 });
             }
 
-            cntStr = "<ul>";
+            cntStr = "<h3>" + r.name + "</h3><ul>";
             r.list.forEach(function (item) {
                 if (!item || item.invalid) return;
                 cntStr += "<li><a href='?" + item.id + "'>" + item.name + "</a></li>";
