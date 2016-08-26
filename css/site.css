@@ -99,6 +99,11 @@ body > section > ul, body > section > ul > li {
     background-color: transparent;
 }
 
+#blog_content > h1 {
+    width: 100%;
+    position: relative;
+    float: none;
+}
 #blog_content > ul {
     width: 100%;
     position: relative;
@@ -113,9 +118,18 @@ body > section > ul, body > section > ul > li {
     padding: 10px;
     overflow-x: auto;
 }
-#blog_content > section + ul {
+#blog_content > section + h1 {
+    font-size: 18px;
+    height: 24px;
+    line-height: 24px;
     position: absolute;
     top: 0;
+    right: 0;
+    left: 620px;
+}
+#blog_content > section + h1 + ul {
+    position: absolute;
+    top: 24px;
     right: 0;
     left: 620px;
 }
