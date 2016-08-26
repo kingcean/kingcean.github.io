@@ -1,0 +1,35 @@
+{
+    "name": ".Net 软件开发博客",
+    "list": [
+        {
+            "name": "延迟任务（英文）",
+            "url": "/2016/03/20/delay-task.md",
+            "categories": [],
+            "date": "20160320"
+        },
+        {
+            "name": "暴击（英文）",
+            "url": "/2016/03/21/multiple-hit-task.md",
+            "categories": [],
+            "date": "20160321"
+        },
+        {
+            "name": "Windows 10 编程遥控 Arduino",
+            "url": "/2016/04/02/windows-yaokong-arduino.md",
+            "categories": [],
+            "date": "20160325"
+        },
+        {
+            "name": "String format（英文）",
+            "url": "/2016/04/06/string-format.md",
+            "categories": [],
+            "date": "20160406"
+        },
+        {
+            "name": "UWP 应用中的语音识别和合成",
+            "url": "/2016/08/18/uwp-yuyin.md",
+            "categories": [],
+            "date": "20160818"
+        }
+    ]
+}
