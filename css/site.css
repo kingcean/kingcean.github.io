@@ -106,7 +106,7 @@ body > section > ul, body > section > ul > li {
 }
 #blog_content > section {
     font-size: 16px;
-    max-width: 640px;
+    max-width: 600px;
 }
 #blog_content > section > pre {
     background-color: rgba(128, 128, 128, 0.1);
@@ -114,6 +114,8 @@ body > section > ul, body > section > ul > li {
     overflow-x: auto;
 }
 #blog_content > section + ul {
-    width: 240px;
-    float: left;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 620px;
 }
