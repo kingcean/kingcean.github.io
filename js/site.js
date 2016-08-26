@@ -64,8 +64,8 @@ var site = {};
             if (!!id) {
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
-                    $.get("item.url").then(function (r2) {
-                        cntStr += "<section>" + markdown.toHTML(r2) + "</section>";
+                    $.get(item.url).then(function (r2) {
+                        cntEle.innerHTML = "<section>" + markdown.toHTML(r2) + "</section>" + cntEle.innerHTML;
                     });
                     return true;
                 });
