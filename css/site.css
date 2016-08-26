@@ -101,6 +101,8 @@ body > section > ul, body > section > ul > li {
 
 #blog_content > h1 {
     width: 100%;
+    padding: 0;
+    margin: 10px 0;
     position: relative;
     float: none;
 }
@@ -120,8 +122,9 @@ body > section > ul, body > section > ul > li {
 }
 #blog_content > section + h1 {
     font-size: 18px;
-    height: 24px;
-    line-height: 24px;
+    line-height: 30px;
+    height: 30px;
+    margin: 0;
     position: absolute;
     top: 0;
     right: 0;
@@ -129,7 +132,7 @@ body > section > ul, body > section > ul > li {
 }
 #blog_content > section + h1 + ul {
     position: absolute;
-    top: 24px;
+    top: 30px;
     right: 0;
     left: 620px;
 }
