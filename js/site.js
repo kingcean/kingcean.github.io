@@ -27,7 +27,14 @@ var site = {};
 
     site.blogs = function () {
         var cntEle = document.getElementById("blog_content");
-        var id = site.query(0);
+        var id = location.search;
+        if (!!id) {
+            var idEndPos = id.indexOf("?");
+            if (idEndPos >= 0) id = id.substring(0, idEndPos);
+            idEndPos = id.indexOf("&");
+            if (idEndPos >= 0) id = id.substring(0, idEndPos);
+        }
+
         $.get("config.json").then(function (r) {
             if (!r || !r.list || !(r.list instanceof Array)) return;
             var cntStr = "";
