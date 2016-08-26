@@ -100,6 +100,10 @@ body > section > ul, body > section > ul > li {
 }
 
 #blog_content > h1 {
+    font-size: 36px;
+    font-weight: lighter;
+    font-style: normal;
+    line-height: 40px;
     width: 100%;
     padding: 0;
     margin: 10px 0;
@@ -122,6 +126,7 @@ body > section > ul, body > section > ul > li {
 }
 #blog_content > section + h1 {
     font-size: 18px;
+    font-weight: bolder;
     line-height: 30px;
     height: 30px;
     margin: 0;
