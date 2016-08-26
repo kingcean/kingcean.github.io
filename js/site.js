@@ -1,5 +1,6 @@
 var site = {};
 (function(site) {
+
     site.query = function (name) {
         url = location.search;
         if (name == null)
@@ -22,7 +23,8 @@ var site = {};
         }
         catch (ex) { }
             return null;
-    }
+    };
+
     site.blogs = function () {
         var cntEle = document.getElementById("blog_content");
         var id = site.query(0);
@@ -72,4 +74,5 @@ var site = {};
             cntEle.innerHTML = "Failed to load";
         });
     };
+    
 })(site || (site = {}));
