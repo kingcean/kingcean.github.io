@@ -122,7 +122,7 @@ body > section > ul, body > section > ul > li {
 }
 #blog_content > ul > li {
     font-size: 16px;
-    margin: 0 0 4px 0;
+    margin: 4px 0;
     float: none;
 }
 #blog_content > section {
@@ -135,10 +135,10 @@ body > section > ul, body > section > ul > li {
     overflow-x: auto;
 }
 #blog_content > section + h1 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bolder;
-    line-height: 30px;
-    height: 30px;
+    line-height: 40px;
+    height: 40px;
     margin: 0;
     position: absolute;
     top: 10px;
