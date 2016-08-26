@@ -28,7 +28,7 @@ var site = {};
         var id = site.query(0);
         $.get("config.json").then(function (r) {
             if (!r || !r.list || !(r.list instanceof Array)) return;
-            var listHTML = "";
+            var cntStr = "";
             r.list.forEach(function (item) {
                 if (!item) return;
                 if (!item.url || item.url.length < 17) {
@@ -55,19 +55,19 @@ var site = {};
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
                     $.get("item.url").then(function (r2) {
-                        listHTML += "<section>" + markdown.toHTML(r2) + "</section>";
+                        cntStr += "<section>" + markdown.toHTML(r2) + "</section>";
                     });
                     return true;
                 });
             }
 
-            listHTML = "<ul>";
+            cntStr = "<ul>";
             r.list.forEach(function (item) {
                 if (!item || item.invalid) return;
-                listHTML += "<li><a href='?" + item.id + "'>" + item.name + "</a></li>";
+                cntStr += "<li><a href='?" + item.id + "'>" + item.name + "</a></li>";
             });
-            listHTML += "</ul>";
-            cntEle.innerHTML = cntHTML;
+            cntStr += "</ul>";
+            cntEle.innerHTML = cntStr;
         }, function (r) {
             cntEle.innerHTML = "Failed to load";
         });
