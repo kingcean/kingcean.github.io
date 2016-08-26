@@ -5,6 +5,7 @@
     <title>Dev Blog - Kingcean</title>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js" ></script>
     <script type="text/javascript" src="../../js/markdown.min.js" ></script>
+    <script type="text/javascript" src="../../js/blog.js" ></script>
     <style type="text/css">
         body {
             color: #333;
@@ -126,12 +127,7 @@
         </div>
     </section>
     <script type="text/javascript">
-        var cntEle = document.getElementById("blog_content");
-        $.get("../../archive/web.md").then(function (r) {
-            cntEle.innerHTML = markdown.toHTML(r);
-        }, function (r) {
-            cntEle.innerHTML = "Failed to load";
-        });
+        site.blogs();
     </script>
 </body>
 </html>
