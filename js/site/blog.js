@@ -40,7 +40,7 @@ var site = {};
                 var fileDate = item.url.substring(1, 11).replace("/", "").replace("/", "");
                 var fileExtPos = fileName.indexOf(".");
                 var fileExt = fileExtPos >= 0 ? fileName.substring(fileExtPos + 1) : "";
-                fileName = fileExtPos > 0 ? fileName(0, fileExtPos) : "";
+                fileName = fileExtPos > 0 ? fileName.substring(0, fileExtPos) : "";
                 if (!fileName) {
                     item.invalid = true;
                     return;
