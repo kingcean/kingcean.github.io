@@ -65,7 +65,8 @@ var site = {};
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
                     $.get("/archive" + item.url).then(function (r2) {
-                        cntEle.innerHTML = "<section>" + markdown.toHTML(r2) + "</section>" + cntEle.innerHTML;
+                        var md = new Remarkable();
+                        cntEle.innerHTML = "<section>" + md.render(r2) + "</section>" + cntEle.innerHTML;
                     });
                     return true;
                 });
