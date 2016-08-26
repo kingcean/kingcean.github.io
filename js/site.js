@@ -46,7 +46,6 @@ var site = {};
 
     site.blogs = function () {
         var cntEle = document.getElementById("blog_content");
-        cntEle.classList.remove("");
         var id = site.firstQuery();
 
         $.get("config.json").then(function (r) {
