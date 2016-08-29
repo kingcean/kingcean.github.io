@@ -1,4 +1,4 @@
-_当前内容尚未翻译，暂时仅提供英文版。_
+_当前内容尚未完成翻译，暂时仅提供英文版。_
 
 在 .Net 开发过程中，我们经常使用 [`String.Format`](https://msdn.microsoft.com/zh-cn/library/system.string.format.aspx) 静态方法来格式化文本模板，该文本中包含一些占位符，并会被依次由给定的一组对象的文本形式所替换。同时，还有许多地方也提供类似方法，以支持这个类型的文本模板及替换方案。我们通常将这项技术称为[复合格式设置](https://msdn.microsoft.com/zh-cn/library/txafckwd.aspx)。其通常需要一个文本模板、一组对象和一个可选的市场选项作为输入。
 
