@@ -117,6 +117,7 @@ body > section > ul, body > section > ul > li {
     margin: 20px 0;
     position: relative;
     float: none;
+    cursor: default;
 }
 #blog_content > ul, #blog_content > ul > li {
     font-size: 16px;
@@ -124,7 +125,7 @@ body > section > ul, body > section > ul > li {
     list-style: none;
 }
 #blog_content > ul {
-    padding: 20px;
+    padding: 14px 19px;
     margin: 0;
     border: 1px solid #DDD;
     border-radius: 4px;
@@ -134,7 +135,6 @@ body > section > ul, body > section > ul > li {
     font-size: 16px;
     padding: 0;
     margin: 8px 0;
-    float: none;
 }
 #blog_content > section {
     font-size: 16px;
