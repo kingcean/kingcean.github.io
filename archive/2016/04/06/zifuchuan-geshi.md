@@ -1,10 +1,12 @@
-In dotNet, we always use [`String.Format`](https://msdn.microsoft.com/en-us/library/system.string.format.aspx) static method to replace the format items in a specified string with the string representations of corresponding objects in a specified array. Some of other methods also support the similar feature. We call this as [composite formatting](https://msdn.microsoft.com/en-us/library/txafckwd.aspx). It takes a list of objects and a composite format string as input.
+_当前内容尚未翻译，暂时仅提供英文版。_
 
-A composite format string consists of fixed text intermixed with indexed placeholders, called format items, that correspond to the objects in the list. The syntax of format item is `index[,length][:formatString]` with outermost braces ("{" and "}"). The formatting operation yields a result string that consists of the original fixed text intermixed with the string representation of the objects in the list.
+在 .Net 开发过程中，我们经常使用 [`String.Format`](https://msdn.microsoft.com/zh-cn/library/system.string.format.aspx) 静态方法来格式化文本模板，该文本中包含一些占位符，并会被依次由给定的一组对象的文本形式所替换。同时，还有许多地方也提供类似方法，以支持这个类型的文本模板及替换方案。我们通常将这项技术称为[复合格式设置](https://msdn.microsoft.com/zh-cn/library/txafckwd.aspx)。其通常需要一个文本模板、一组对象和一个可选的市场选项作为输入。
 
-But how can we implement it?
+文本模板需要包含一组具有索引号的占位符，这些占位符用于被替换为制定的对象。占位符的语法为`{索引号[,长度][:格式化选项字符串]}`。最终，将会输出一个经过替换后的字符串。
 
-## Usages
+不过，其原理是什么呢？
+
+## 使用方式
 
 There are many overloads of `String.Format` static method. One of syntax is like following.
 
@@ -44,7 +46,7 @@ Hi Kingcean, it is at 11 o'clock now.
 
 Lots of other methods which support composite formatting are based on the `String.Format` static method.
 
-## String builder
+## String Builder
 
 In fact, dotNet implements `String.Format` static method by [`StringBuilder`](https://msdn.microsoft.com/en-us/library/system.text.stringbuilder.aspx) which is in System.Text namespace.
 
@@ -83,7 +85,7 @@ The result is same as the above sample.
 
 So we will introduce the implementation of this member method in C# here.
 
-## Begin to implement
+## 开始实现
 
 Firstly, we need validate the arguments. Both format and args are required.
 
@@ -123,7 +125,7 @@ return this;
 
 Now we need implement the while loop.
 
-## Append normal characters
+## 追加普通字符
 
 Because the string contains placeholder, we need check filter them and add normal ones. So we need update the To-Do in the above while loop as following. It needs another while loop before position increasing.
 
@@ -178,7 +180,7 @@ else
 
 So we have append all normal characters to the StringBuilder and get the format items.
 
-## Resolve argument
+## 获取参数
 
 When the above while loop is break, it is in format items route. We need add logic after the position increasing in the outer while loop.
 
@@ -223,7 +225,7 @@ var arg = args[index];
 
 This will be formatted to append later.
 
-## Get minimum length
+## 获取最小长度
 
 Remove the white spaces after the index if has.
 
@@ -284,7 +286,7 @@ while (pos < len && (ch = format[pos]) == ' ') pos++;
 
 Now we have gotten the minimum length of argument to present.
 
-## Format argument
+## 格式化参数
 
 And try to get its formatString by the same way. It is after a colon. We need another StringBuilder instance for saving it.
 
@@ -368,7 +370,7 @@ if (s == null)
 
 The s variable is the string formatted of the argument.
 
-## Append the argument
+## 追加参数
 
 If the argument string is null, we need use an empty string instead.
 
