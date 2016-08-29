@@ -30,7 +30,6 @@ body > header {
     border-top: 1px solid white;
 }
 body > header + header {
-    height: 39px;
     background-color: #E3E3E3;
     border-bottom: 1px solid #DDD;
 }
