@@ -120,17 +120,19 @@ body > section > ul, body > section > ul > li {
 }
 #blog_content > ul, #blog_content > ul > li {
     font-size: 16px;
-    width: 100%;
-    padding: 0;
     position: relative;
     list-style: none;
 }
 #blog_content > ul {
+    padding: 20px;
     margin: 0;
+    border: 1px solid #DDD;
+    border-radius: 4px;
     float: none;
 }
 #blog_content > ul > li {
     font-size: 16px;
+    padding: 0;
     margin: 8px 0;
     float: none;
 }
@@ -147,6 +149,7 @@ body > section > ul, body > section > ul > li {
     font-size: 18px;
     font-weight: bolder;
     line-height: 40px;
+    width: auto;
     height: 40px;
     margin: 0;
     position: absolute;
@@ -154,13 +157,18 @@ body > section > ul, body > section > ul > li {
     right: 0;
     left: 620px;
 }
-#blog_content > section + h1 + ul {
+#blog_content > section + h1 + ul,
+#blog_content > section + h1 + ul + h2 + ul {
     width: auto;
+    padding: 0;
+    border: 0 none transparent;
+    border-radius: 0;
     position: absolute;
     top: 50px;
     right: 0;
     left: 620px;
 }
-#blog_content > section + h1 + ul > li {
+#blog_content > section + h1 + ul > li,
+#blog_content > section + h1 + ul + h2 + ul > li {
     position: relative;
 }
