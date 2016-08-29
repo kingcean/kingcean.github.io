@@ -25,11 +25,15 @@ body > header a:hover {
     cursor: pointer;
 }
 body > header {
-    height: 50px;
+    height: 40px;
     background-color: #EEE;
-    border-bottom: 1px solid #DDD;
 }
-body > header > section {
+body > header + header {
+    color: #EEE;
+    height: 40px;
+    background-color: #DDD;
+}
+body > header > section, body > header + header > section {
     width: 100%;
     max-width: 1000px;
     padding: 0;
@@ -42,19 +46,20 @@ body > header > section > h1:first-child {
     font-weight: normal;
     font-style: normal;
     text-align: left;
-    line-height: 50px;
+    line-height: 40px;
     width: 120px;
-    height: 50px;
+    height: 40px;
     padding: 0 0 0 10px;
     margin: 0;
 }
-body > header > section > ul, body > header > section > ul > li {
+body > header > section > ul, body > header > section > ul > li,
+body > header + header > section > ul, body > header + header > section > ul > li {
     padding: 0;
     margin: 0;
     list-style: none;
     display: block;
 }
-body > header > section > ul {
+body > header > section > ul, body > header + header > section > ul {
     display: block;
     position: absolute;
     top: 0;
@@ -62,16 +67,17 @@ body > header > section > ul {
     bottom: 0;
     left: 140px;
 }
-body > header > section > ul > li {
+body > header > section > ul > li, body > header + header > section > ul {
     display: inline-block;
 }
-body > header > section > ul > li > a {
+body > header > section > ul > li > a, body > header + header > section > ul > li > a {
     text-align: center;
     line-height: 50px;
     padding: 0 20px;
     display: block;
 }
 body > header > section > ul > li.state-selected-t {
+    color: black;
     background-color: #DDD;
 }
 body > section {

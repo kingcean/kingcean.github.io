@@ -39,13 +39,22 @@ var site = {};
     };
 
     site.head = function () {
-        var cntEle = document.getElementById("page_head");
+        var cntEle = document.createElement("header");
+        cntEle.id = "page_head";
         cntEle.innerHTML = '<section><h1><a href="http://www.kingcean.com/">Kingcean</a></h1>\
             <ul><li><a href="http://blogs.msdn.com/kingcean/">MSDN</a></li><li class="state-selected-t"><a href="http://github.kingcean.com/">GitHub</a></li><li><a href="https://www.facebook.com/kingcean">Facebook</a></li></ul></section>';
+        document.body.appendChild(cntEle);
+
+        var cnt2Ele = document.createElement("header");
+        cnt2Ele.id = "page_menu";
+        cnt2Ele.innerHTML = '<section><ul><li><a href="http://blogs.msdn.com/kingcean/">Repositories</a></li><li><a href="http://github.kingcean.com/blog/dotnet">.Net Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/web">Web Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/qianduan">前端开发博客</a></li><li><a href="http://github.kingcean.com/blog/web">.Net 开发博客</a></li></ul></section>';
+        document.body.appendChild(cnt2Ele);
     };
 
     site.blogs = function () {
-        var cntEle = document.getElementById("blog_content");
+        var cntEle = document.createElement("section");
+        cntEle.id = "blog_content";
+        document.body.appendChild(cntEle);
         var id = site.firstQuery();
 
         $.get("config.json").then(function (r) {
