@@ -67,12 +67,12 @@ body > header > section > ul, body > header + header > section > ul {
     bottom: 0;
     left: 140px;
 }
-body > header > section > ul > li, body > header + header > section > ul {
+body > header > section > ul > li, body > header + header > section > ul > li {
     display: inline-block;
 }
 body > header > section > ul > li > a, body > header + header > section > ul > li > a {
     text-align: center;
-    line-height: 50px;
+    line-height: 40px;
     padding: 0 20px;
     display: block;
 }
