@@ -12,7 +12,7 @@ a, a:visited {
 }
 a:hover {
     color: #47C;
-    text-decoration: none;
+    text-decoration: underline;
     cursor: pointer;
 }
 body > header a, body > header a:visited {
@@ -156,6 +156,7 @@ body > section > ul, body > section > ul > li {
     left: 620px;
 }
 #blog_content > section + h1 + ul {
+    width: auto;
     position: absolute;
     top: 50px;
     right: 0;
