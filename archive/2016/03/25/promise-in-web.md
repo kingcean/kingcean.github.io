@@ -58,6 +58,7 @@ The class Promise is what we will implement.
 Considering there is a Promise in ES6 already, so we will name our new class as LitePromise here.
 
 What should be in the class?
+
 - A constructor which can pass an argument which is a function to run. The function has 2 arguments and both of them are delegates. These delegates are provided by Promise class for using in the function. The first delegate is used to pass a result to handle success callbacks; the other is to pass failure reason to handle fail callbacks.
 - A member method to register on fulfilled callback for success and on rejected callback for failure. This method should return another Promise so that we can register callbacks after this Promise has completed. Both of the callback can pass an argument which is the result or error reason. And both of the callback can return a value as the next Promise result value or failure reason.
 
@@ -227,7 +228,7 @@ catch (e) {
 }
  
 // Resolve.
-deferred.resolve(ret)
+deferred.resolve(ret);
 ```
 
 As what we have discussed before, the member method then which is used to register deferred callbacks will return next Promise. The constructor need pass a function as its argument. The function is to handle the deferred information. So we can implement it there now as following.
