@@ -2,13 +2,13 @@
     "name": ".Net 软件开发博客",
     "list": [
         {
-            "name": "延迟任务（英文）",
+            "name": "延迟合并处理任务",
             "url": "/2016/03/20/yanchi-renwu-cs.md",
             "categories": [],
             "date": "20160320"
         },
         {
-            "name": "暴击（英文）",
+            "name": "暴击事件",
             "url": "/2016/03/21/baoji-shijian-cs.md",
             "categories": [],
             "date": "20160321"
