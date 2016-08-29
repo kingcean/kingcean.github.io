@@ -26,12 +26,11 @@ body > header a:hover {
 }
 body > header {
     height: 40px;
-    background-color: #EEE;
+    background-color: white;
 }
 body > header + header {
-    color: #EEE;
     height: 40px;
-    background-color: #DDD;
+    background-color: #EEE;
 }
 body > header > section, body > header + header > section {
     width: 100%;
@@ -65,12 +64,7 @@ body > header > section > ul, body > header + header > section > ul {
     top: 0;
     right: 10px;
     bottom: 0;
-}
-body > header > section > ul {
     left: 140px;
-}
-body > header + header > section > ul {
-    left: 20px;
 }
 body > header > section > ul > li, body > header + header > section > ul > li {
     display: inline-block;
