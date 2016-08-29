@@ -1,8 +1,11 @@
-To design a web app for different countries and regions, we need add globalization and localization supports. For C# user, you can use resource file and other utilities. But for web software development, how can we build a module to organize these information? You may use back-end template engine to render pages, and web services to send back data in local; but for client side, I will introduce a way to set up string resources for localization in Type Script.
+_当前内容尚未翻译，暂时仅提供英文版。_
 
-## Requirement
+如果需要去设计实现一个 Web 应用，并能适用于不同国家和地区，我们需要为其添加良好的全球化和本地化支持。对于 C# 用户，你可能已经非常了解资源文件和相关的工具了，这些都可以非常便捷地提供这些功能。然而，作为 Web 前段开发，如何去设计一个通用模块，来提供这些本地化的信息呢？通过后端服务提供本地化内容，然后由后端模板引擎输出到页面，或者通过 AJAX 请求以获得，诸如此类的方法都能解决这个问题；但是，如果需要在客户端自行控制，即有前端脚本自身来完成相关操作，而不是借助于后端，那么，本文将介绍如何去实现一个支持本地化的字符串资源管理器。
+
+## 需求
 
 Because perhaps a web app is made by different components. Each component can has its own local information. So we will use a class to store local information for each component. The class should contain following functions.
+
 - Gets or sets a default language pack.
 - Registers strings.
 - Gets a local string.
@@ -33,7 +36,7 @@ class Local {
 
 We can initialize an instance of Local class to maintain a strings resource for each language.
 
-## Local culture
+## 本地语言
 
 Before implement Local class, we need an important helper that is to resolve local culture information. We can use a variable to save the language and provide a function to get and set.
 
@@ -122,7 +125,7 @@ console.debug(Local.lang(true));
 
 It can return the correct language code.
 
-## Register language packs
+## 注册语言包
 
 Now let's turn back to the Local class.
 
@@ -202,7 +205,7 @@ local.regStrings("zh-SG", lp_hans);
 
 So we can register any language pack in the business components now.
 
-## Access the string
+## 访问本地化后的内容
 
 To get a specific string in local, we need have a way to resolve the language pack firstly. So we will have a private member method as following to resolve a string set by loading from the strings container directly.
 
@@ -313,7 +316,7 @@ console.debug(local.specificString("greetings", "zh-Hans", "嗨！"));
 
 However, considering a scenario that if there is only an English strings set which is coded as en but the current environment is set to en-us, it will resolve nothing. We need a new method to get a closed string from current culture or the specific one.
 
-## Resolve a string in local
+## 获取当前语言的文本
 
 For this goal, we can do as following steps.
 

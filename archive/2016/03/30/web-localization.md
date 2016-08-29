@@ -3,6 +3,7 @@ To design a web app for different countries and regions, we need add globalizati
 ## Requirement
 
 Because perhaps a web app is made by different components. Each component can has its own local information. So we will use a class to store local information for each component. The class should contain following functions.
+
 - Gets or sets a default language pack.
 - Registers strings.
 - Gets a local string.
@@ -124,7 +125,7 @@ It can return the correct language code.
 
 ## Register language packs
 
-Now let's turn back to the Local class.
+Now let's turn back to the `Local` class.
 
 Firstly, we need a data container to store all strings in the class.
 
