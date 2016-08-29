@@ -91,3 +91,67 @@ if (HitCount <= Start || HitCount > End)
     return false;
 }
 ```
+于是，我们便完成了以下代码。
+
+```csharp
+/// <summary>
+/// Multiple hit task.
+/// </summary>
+public class MultipleHitTask
+{
+    /// <summary>
+    /// Gets or sets the start index of hit to process.
+    /// </summary>
+    public int Start { get; set; }
+ 
+    /// <summary>
+    /// Gets or sets the end index of hit to process.
+    /// </summary>
+    public int End { get; set; }
+ 
+    /// <summary>
+    /// Gets the timeout.
+    /// </summary>
+    public TimeSpan Timeout { get; private set; }
+ 
+    /// <summary>
+    /// Gets the time of latest processing.
+    /// </summary>
+    public DateTime LatestProcess { get; private set; }
+ 
+    /// <summary>
+    /// Gets the hit count.
+    /// </summary>
+    public int HitCount { get; private set; }
+ 
+    /// <summary>
+    /// Adds or removes the event handler occured
+    /// after processing
+    /// </summary>
+    public event EventHandler<IndexEventArgs> Processed;
+ 
+    /// <summary>
+    /// Processes the task.
+    /// </summary>
+    /// <returns>true if match the condition to execute;
+    /// otherwise, false.</returns>
+    public bool Process()
+    {
+        var now = DateTime.Now;
+        if (LatestProcess == null
+            || now - LatestProcess > Timeout)
+        {
+            HitCount = 0;
+        }
+ 
+        HitCount++;
+        if (HitCount <= Start || HitCount > End)
+            return false;
+        var args = new IndexEventArgs(HitCount - 1);
+        Processed(this, args);
+        return true;
+    }
+}
+```
+
+现在，我们可以在需要的地方，初始化一个这个类的对象，并绑定暴击触发时所需执行的事件，并在诸如点击、被遥测处或其它地方，调用这个对象的 Process 方法即可。

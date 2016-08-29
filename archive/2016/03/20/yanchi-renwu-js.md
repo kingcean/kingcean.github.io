@@ -1,248 +1,128 @@
-In some of textbox, it will render a dropdown list to show the suggestion when we are typing. Maybe you will think it imposes additional cost for network and server computing if the data is resolved from web service because perhaps user will ignore the information before complete a series characters typing of what the user want. A better way is to merge the requests to send the last one and ignore the ones when user are typing.
+我们经常会遇到一种情况，在带有智能提示的文本框，在输入内容时，会实时或准实时弹出提示下拉框，里面包含系统猜测你可能要输入的内容。当这些搜索建议来自服务器的时候，有时你会觉得这种智能提示对服务器的负载有点大，毕竟但用户输入完一定内容之前，会产生多余的流量和服务器运算，在此过程中所产生的结果甚至用户根本不会留意，因此还不如忽略掉这期间的过程。
 
-But how to implement it?
+那么，如何做到这一点呢？
 
-We will design a delay task with following goals to handle this.
+延迟合并处理任务应运而生。其实，不光前面所说的这个场景，还有许多情况也会需要应用到这种类型的任务。该任务满足一下几点功能条件。
 
-- Generates a task to control when to run a given handler.
-- Process the handler after a specific time span when the task starts.
-- The task can be run by several times.
-- Auto merge and ignore the previous ones if the task runs again after a short while.
+- 可以创建一个任务方法，里面会包含注册的业务方法。任务方法用于在需要延迟调用业务方法的地方调用，后续的延迟与合并操作会由任务方法自动处理。
+- 在任务方法执行时，会在延迟一段时间后才执行所注册的业务方法。
+- 任务方法可以在不同地方分别调用多次。
+- 当上一个任务方法的延迟时限还没到时，如果下一个任务方法被调用，那么上一个任务方法会被终止，也即此时只会在最后一个任务方法中经过延迟一段时间后调用业务方法。此乃置后合并是也，用于过滤掉前面的多余执行。
 
-In fact, the above is one of scenarios for usage. We can use this for lots of things. I will introduce this implementation in both of [Type Script](#type-script) and [C#](#c-sharp).
+好了，我们要开始实现了。出于让使用者感觉简单的目的，我们把方法设计成以下这样。
 
-## Type Script
-
-Let's define the options interface for customizing the delay task.
-
-```typescript
-/**
-  * Options to set the delay task.
-  */
-export interface DelayOptionsContract {
- 
-    /**
-      * The business handler to process.
-      * @param modelArg  An optional argument.
-      */
-    process(modelArg?: any): void;
- 
-    /**
-      * The timespan in millisecond for waiting.
-      */
-    delay?: number;
- 
-    /**
-      * The object to be used as the current object
-      * for handler processing.
-      */
-    thisArg?: any;
+```javascript
+function delay(options) {  
+    // ToDo: Implement it.  
+    return null;  
 }
 ```
 
-Then we need add a function to generates the task delegate. The function can pass an argument which will be passed to the handler registered later automatically.
+返回一个方法，即任务方法，方法允许传入一个可选的参数，该参数会传入业务方法。而在上面这段代码中，其函数签名里的 options 参数用于指定一些自定义选项，必填，是一个 JSON 对象，可以包含以下几个属性和方法。
 
-```typescript
-export function delay(options: DelayOptionsContract)
-    : (modelArg?: any) => void {
-    // ToDo: Implement it.
-    return null;
-}
-```
+- `process` 方法，即业务方法本身，必填，无返回值，可包含一个入口参数，该参数会被自动填写，来自于前面所述的任务方法中传入参数。
+- `delay` 属性，整数型，可选，用于指定延迟时间，以毫秒做单位。
+- `thisArg` 属性，对象型，可选，用于指定当业务方法调用时，`this` 指向谁。
 
-We can set a timeout callback to process the handler. This delegate will be returned as the task delegate to provide delay processing.
+好了，有了这些就好办了，于是我们可以像下面这样实现刚才那个方法。
 
-```typescript
-return (modelArg?: any) => {
-    setTimeout(() => {
-        options.process(modelArg);
-    }, options.delay);
+```javascript
+return function (modelArg) {  
+    setTimeout(function () {  
+        options.process.call(options.thisArg, modelArg);  
+    }, options.delay != null ? options.delay : 0);  
 };
 ```
 
-However, it will process twice or more when the user runs the task several times. So we need update it to ignore previous ones when the task run again after a short while. We need add a token bound to the task. The token will renew when the task runs and pass to a callback. The callback will check the if the token passed equals to the one bound in task to determine whether need continue to process the handler registered.
+可是，这样只起到了延时，而没有做到自动合并多余项，并只保留最后一个延时请求。为了解决这个问题，我们需要引入一种新的机制，即在执行延时操作之前，先约定一个唯一编号，存储在两份地方：一份记录在任务里面，该绑定记录在该任务的多次执行过程中是共享的；另一份跟随该次任务方法执行，被带到延时回调中去。而等到延时操作执行时，先检测任务里绑定的这个编号与之前约定的是否相符，如果是一致的，那么久继续执行，否则说明有一个新的任务方法被调用了，如下代码所示，我们先加了一个绑定到任务的编号，以及一个回调方法，支持将约定的变量传递过来，当然，还有前面说的 modelArg 也要带上。
 
-```typescript
-var token = 0;
-var handler = (modelArg: any, testToken: number) => {
-    if (testToken !== token) return;
-    options.process.call(options.thisArg, modelArg);
+```javascript
+var token = 0;  
+var handler = function (modelArg, testToken) {  
+    if (testToken !== token) return;  
+    options.process.call(options.thisArg, modelArg);  
 };
 ```
 
-We can just use an increasable number as the token for checking. And the timeout callback in the delegate should be replaced by the new one above.
+然后我们在此后执行编号的生成，如通过自增数字的形式，保证唯一。而前面描述的返回的任务方法，也改成调用上面的那个回调函数。
 
-```typescript
-return (modelArg?: any) => {
-    token++;
-    setTimeout(handler, options.delay, modelArg, token);
+```javascript
+return function (modelArg) {  
+    token++;  
+    setTimeout(handler, options.delay != null ? options.delay : 0, modelArg, token);  
 };
 ```
 
-Currently, the callback will be still run even if the token is changed although it will stop to process the handler. To improve this, we can abort it before it runs. So we need add a timeout identifier to record current one and clear the previous one during the task runs. So we update the returned delegate as following.
+如此一来，我们就搞定了这个需求。不过这样还不是很好，因为无论是否该阻止当前这次的业务方法执行，这个回调都会被执行到，虽然执行时会先检查状态，但如果我们在其为执行到之前，就把它干掉岂不更好？于是我们又做了如下改进，把上面的这个返回部分改成如下。
 
-```typescript
-var timeout: number;
-return (modelArg?: any) => {
-    token++;
-    if (!!timeout)
-        clearTimeout(timeout);
-    timeout = setTimeout(handler, options.delay, modelArg, token);
+```javascript
+var timeout;  
+return function (modelArg) {  
+    token++;  
+    if (!!timeout)  
+        clearTimeout(timeout);  
+    timeout = setTimeout(  
+        handler,  
+        options.delay,  
+        modelArg,  
+        token);  
 };
 ```
 
-Then we can add the empty arguments checking and it will look like this.
+然后再加上为空校验，便形成了如下最终代码。
 
-```typescript
-/**
-  * Generates a delay task.
-  * @param options  The options to load.
-  */
-export function delay(options: DelayOptionsContract)
-    : (modelArg?: any) => void {
-    if (!options || !options.process)
-        return null;
-    var token = 0;
-    var timeout: number;
-    var handler = (modelArg: any, testToken: number) => {
-        timeout = null;
-        if (testToken !== token)
-            return;
-        options.process.call(options.thisArg, modelArg);
-    };
-    return (modelArg?: any) => {
-        token++;
-        if (!!timeout)
-            clearTimeout(timeout);
-        timeout = setTimeout(handler, options.delay != null ? options.delay : 0, modelArg, token);
-    };
+```javascript
+/** 
+  * Generates a delay task. 
+  * @param options  The options to load. 
+  */  
+function delay(options) {  
+    if (!options || !options.process)  
+        return null;  
+    var token = 0;  
+    var timeout;  
+    var handler = function (modelArg, testToken) {  
+        timeout = null;  
+        if (testToken !== token)  
+            return;  
+        options.process.call(options.thisArg, modelArg);  
+    };  
+    return function (modelArg) {  
+        token++;  
+        if (!!timeout)  
+            clearTimeout(timeout);  
+        timeout = setTimeout(handler, options.delay != null ? options.delay : 0, modelArg, token);  
+    };  
 }
 ```
 
-Now we can have a test.
+现在，我们来测试一下。
 
-```typescript
-var task = delay({
-    delay: 300,
-    process: function (model) {
-        console.debug(model);
-    }
-});
-document.body.addEventListener(
-    "click",
-    function (ev) {
-        task(new Date().toLocaleTimeString());
-    },
-    false);
-```
-
-Run the test and you can click or tap the page quickly. It will record the latest one in console as debug info. But it will record the previous one if you click or tap after 0.3s in this example
-
-And of course, you can continue to add promise support.
-
-## C Sharp
-
-Firstly, we need add some references for using.
-
-```csharp
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-```
-
-Then we can define a class with a property to set the timeout span and an event for registering the one which will be occurred after the task processing. An async method is provided to call to process the task after the specific time span.
-
-```csharp
-public class DelayTask
-{
-    public TimeSpan Span { get; set; }
- 
-    public event EventHandler Processed;
- 
-    public async Task<bool> Process()
-    {
-        throw new NotImplementedException();
-    }
+```javascript
+function delayTest() {  
+    var task = OpenSamples.delay({  
+        delay: 300,  
+        process: function (model) {  
+            console.debug(model);  
+        }  
+    });  
+  
+    // 间隔一小段时间执行一次，以进行测试。  
+    setTimeout(function () {  
+        task(new Date().toLocaleTimeString());  
+        setTimeout(function () {  
+            task(new Date().toLocaleTimeString());  
+            setTimeout(function () {  
+                task(new Date().toLocaleTimeString());  
+            }, 200);  
+        }, 200);  
+    }, 200);  
+  
+    // 添加到点击事件中来进行测试。  
+    document.body.addEventListener("click", function (ev) {  
+        task(new Date().toLocaleTimeString());  
+    }, false);  
 }
 ```
 
-In process method, we need delay to execute and raise the event. To ignore the processing of the ones raised before the previous one finished, we need add a token to check.
-
-```csharp
-private Guid _token = Guid.Empty;
-```
-
-The token should be generated, checked and cleared during processing. The result is a status indicating whether it executes.
-
-```csharp
-public async Task<bool> Process()
-{
-    var token = Guid.NewGuid();
-    _token = token;
-    await Task.Delay(Span);
-    if (token != _token) return false;
-    _token = Guid.Empty;
-    Processed(this, new EventArgs());
-    return true;
-}
-```
-
-And add a cancellable process method. Now we get the following task.
-
-```csharp
-/// <summary>
-/// The delay task.
-/// </summary>
-public class DelayTask
-{
-    private Guid _token = Guid.Empty;
- 
-    /// <summary>
-    /// Gets or sets the delay time span.
-    /// </summary>
-    public TimeSpan Span { get; set; }
- 
-    /// <summary>
-    /// Adds or removes the event handler occurred
-    /// after processed.
-    /// </summary>
-    public event EventHandler Processed;
- 
-    /// <summary>
-    /// Processes the delay task.
-    /// </summary>
-    /// <returns>
-    /// A task with a value indicating whether it executes.
-    /// </returns>
-    public async Task<bool> Process()
-    {
-        return await Process(CancellationToken.None);
-    }
- 
-    /// <summary>
-    /// Processes the delay task.
-    /// </summary>
-    /// <param name="cancellationToken">
-    /// The cancellation token that will be checked prior
-    /// to completing the returned task.
-    /// </param>
-    /// <returns>
-    /// A task with a value indicating whether it executes.
-    /// </returns>
-    public async Task<bool> Process(
-        CancellationToken cancellationToken)
-    {
-        var token = Guid.NewGuid();
-        _token = token;
-        await Task.Delay(Span, cancellationToken);
-        if (token != _token) return false;
-        _token = Guid.Empty;
-        if (cancellationToken.IsCancellationRequested)
-            return false;
-        Processed(this, new EventArgs());
-        return true;
-    }
-}
-```
-
-To use it, you just need create an instance of this class with delay time span and call its process member method where you need execute the task. You can also register the event handler for processing.
+你会发现，前面的时间间隔测试中，虽然执行了三次，但实际只会执行最后的那一次；而后面的点击测试中，如果你多次快速点击，只有这一批次中的最后一下会被记录，除非你某两次的点击间隔时常超过0.3秒，那么前面的那次也会被记录，因为这是两个批次。这说明一切运转如预期。
