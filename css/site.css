@@ -65,7 +65,12 @@ body > header > section > ul, body > header + header > section > ul {
     top: 0;
     right: 10px;
     bottom: 0;
+}
+body > header > section > ul {
     left: 140px;
+}
+body > header + header > section > ul {
+    left: 20px;
 }
 body > header > section > ul > li, body > header + header > section > ul > li {
     display: inline-block;

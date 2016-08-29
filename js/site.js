@@ -47,7 +47,7 @@ var site = {};
 
         var cnt2Ele = document.createElement("header");
         cnt2Ele.id = "page_menu";
-        cnt2Ele.innerHTML = '<section><ul><li><a href="http://blogs.msdn.com/kingcean/">Repositories</a></li><li><a href="http://github.kingcean.com/blog/dotnet">.Net Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/web">Web Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/qianduan">前端开发博客</a></li><li><a href="http://github.kingcean.com/blog/web">.Net 开发博客</a></li></ul></section>';
+        cnt2Ele.innerHTML = '<section><ul><li><a href="https://github.com/kingcean?tab=repositories">Repositories</a></li><li><a href="http://github.kingcean.com/blog/dotnet">.Net Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/web">Web Dev Blogs</a></li><li><a href="http://github.kingcean.com/blog/qianduan">前端开发博客</a></li><li><a href="http://github.kingcean.com/blog/web">.Net 开发博客</a></li></ul></section>';
         document.body.appendChild(cnt2Ele);
     };
 
