@@ -163,8 +163,5 @@ body > section > ul, body > section > ul > li {
     left: 620px;
 }
 #blog_content > section + h1 + ul > li {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    left: 620px;
+    position: relative;
 }
