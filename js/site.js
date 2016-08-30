@@ -60,7 +60,7 @@ var site = {};
         $.get("config.json").then(function (r) {
             if (!r || !r.list || !(r.list instanceof Array)) return;
             var cntStr = "";
-            r.list.forEach(function (item) {
+            r.list.reverse().forEach(function (item) {
                 if (!item) return;
                 if (!item.url || item.url.length < 17) {
                     item.invalid = true;
@@ -105,7 +105,7 @@ var site = {};
             cntStr += "</ul>";
             cntEle.innerHTML = cntStr;
         }, function (r) {
-            cntEle.innerHTML = "Failed to load.";
+            cntEle.innerHTML = "<em>Failed to load.</em>";
         });
     };
     
