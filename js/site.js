@@ -80,7 +80,7 @@ var site = {};
                 if (!item.id) item.id = fileName;
                 if (!item.date) item.date = fileDate;
                 if (!item.type) item.type = fileExt;
-                item.dir = fileDate
+                item.dir = item.url.substring(0, 11);
             });
 
             if (!!id) {
