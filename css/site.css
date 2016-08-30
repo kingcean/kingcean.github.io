@@ -140,6 +140,9 @@ body > section > ul, body > section > ul > li {
     font-size: 16px;
     max-width: 600px;
 }
+#blog_content > section image {
+    max-width: 600px;
+}
 #blog_content > section > pre {
     background-color: rgba(128, 128, 128, 0.1);
     padding: 10px;
