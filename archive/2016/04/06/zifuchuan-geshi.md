@@ -1,5 +1,3 @@
-_当前内容尚未完成翻译，暂时仅提供英文版。_
-
 在 .Net 开发过程中，我们经常使用 [`String.Format`](https://msdn.microsoft.com/zh-cn/library/system.string.format.aspx) 静态方法来格式化文本模板，该文本中包含一些占位符，并会被依次由给定的一组对象的文本形式所替换。同时，还有许多地方也提供类似方法，以支持这个类型的文本模板及替换方案。我们通常将这项技术称为[复合格式设置](https://msdn.microsoft.com/zh-cn/library/txafckwd.aspx)。其通常需要一个文本模板、一组对象和一个可选的市场选项作为输入。
 
 文本模板需要包含一组具有索引号的占位符，这些占位符用于被替换为制定的对象。占位符的语法为`{索引号[,长度][:格式化选项字符串]}`。最终，将会输出一个经过替换后的字符串。
@@ -8,7 +6,7 @@ _当前内容尚未完成翻译，暂时仅提供英文版。_
 
 ## 使用方式
 
-There are many overloads of `String.Format` static method. One of syntax is like following.
+`String.Format` 静态方法有多种重载，其中一个如下。
 
 ```csharp
 public static string Format(
@@ -18,76 +16,72 @@ public static string Format(
 ) { }
 ```
 
-Following are the arguments.
-- provider
+这其中包含这些参数。
 
-  An object that supplies culture-specific formatting information.
-- format
+- `provider`：一个用于指定语言的信息，用于提供更为本地化的格式化依据。
+- `format`：文本模板，其中包含占位符。
+- `args`: 一组对象，按照从0开始排序，依次替换文本模板中的占位符。
 
-  A composite format string.
-- args
+该方法会返回一个新的字符串，其中包括将占位符替换为该组对象后的格式化内容。
 
-  An object array that contains zero or more objects to format.
-
-It returns a copy of format in which the format items have been replaced by the string representation of the corresponding objects in args.
-
-So we can use it like following.
+然后，我们可以按照下述方式使用。
 
 ```csharp
 var name = "Kingcean";
-var str = string.Format(CultureInfo.CurrentUICulture, "Hi {0}, it is at {1:hh} o'clock now.", name, DateTime.Now);
+var str = string.Format(CultureInfo.CurrentUICulture, "你好{0}，现在是上午{1:hh}点钟。", name, DateTime.Now);
 ```
 
-The str variable will be following string if it is at 11:00 am now.
+变量`str`将为如下内容，假设现在是上午十一点整。
 
 ```
-Hi Kingcean, it is at 11 o'clock now.
+你好Kingcean，现在是上午11点钟。
 ```
 
-Lots of other methods which support composite formatting are based on the `String.Format` static method.
+在 .Net 中，许多其它方法也在使用诸如 `String.Format` 静态方法的复合格式设置功能，当然，我们也可以在自己的代码中应用。
 
 ## String Builder
 
-In fact, dotNet implements `String.Format` static method by [`StringBuilder`](https://msdn.microsoft.com/en-us/library/system.text.stringbuilder.aspx) which is in System.Text namespace.
+事实上，.Net Framework 中的 `String.Format` 静态方法，是通过使用 `System.Text` 命名空间下的 [`StringBuilder`](https://msdn.microsoft.com/en-us/library/system.text.stringbuilder.aspx) 类来实现的。
 
-1. Acquire a `StringBuilder` instance.
-2. Append format to the `StringBuilder` instance.
-3. Converts to string and release the `StringBuilder` instance.
+1. 创建 `StringBuilder` 类的实例；
+2. 插入格式化后的字符串到该实例中。
+3. 将其转换为字符串类型，并释放该实例。
 
-The StringBuilder class is used to represents a mutable string of characters. It provides some member methods to append object to current string with higher performance than combining strings directly. Following are some examples of its member methods to append something.
+`StringBuilder` 类用于维护一段在某一时间段内可能会经常变更的字符串，例如，需要拼接或填充一个字符串，然而过程较为繁琐，如果直接使用 `string` 来进行处理，由于 `string` 在处理上的特殊原因，可能会导致占用系统内存等，这时，该类可以很好的处理这种情况，并最终提供一个将最后结果输出为普通的 `string` 类型的方法。`StringBuilder` 为此也提供了许多方法来支持这些功能，以下是部分关于追增内容的方法。
 
 ```csharp
 public StringBuilder Append(char value, int repeatCount = 1); 
 public StringBuilder Append(string value);
 ```
-It also support other overloads for further type as argument. And of course, it provide to append an object. The object will be convert to string if it is not null; otherwise, do nothing.
+
+当然，该成员方法也包含一些重载，以提供其它类型的插入。当然，也可以直接插入一个 `object` 类型，其会被转换为 `string` 并被插入，当其为 `null` 时则什么也不会发生/
 
 ```csharp
 public StringBuilder Append(object value);
 ```
 
-This class also contain a member method for appending composite format string. Such as following.
+这个类也提供一个成员方法来插入复合格式设置的文本，例如下面这个。
 
 ```csharp
 public StringBuilder AppendFormat(IFormatProvider provider, string format, params object[] args);
 ```
 
-People can call this method directly, too.
+于是，我们也可以直接像下面这样使用。
 
 ```csharp
 var name = "Kingcean";
 var sb = new StringBuilder();
-sb.AppendFormat(CultureInfo.CurrentUICulture, "Hi {0}, it is at {1:hh} o'clock now.", name, DateTime.Now);
+sb.AppendFormat(CultureInfo.CurrentUICulture, "你好{0}，现在是{1:hh}点钟。", name, DateTime.Now);
 var str = sb.ToString();
 ```
 
-The result is same as the above sample.
+其结果和前面的例子一样。
 
-So we will introduce the implementation of this member method in C# here.
+但是这是如何实现的呢？下面我将开始来介绍，代码将使用 C# 语言来书写。
 
 ## 开始实现
 
-Firstly, we need validate the arguments. Both format and args are required.
+首先，我们需要验证参数，`format` 和 `args` 都不能为空。
 
 ```csharp
 if (format == null)
@@ -97,7 +91,7 @@ if (args == null)
     throw new ArgumentNullException("args");
 ```
 
-Then we need iterate all characters to append. To do so, we need record the item and index we are iterating, and get the length of the string to test.
+然后我们需要准备一些信息，用于遍历整个字符串，这些信息包括当下读取的字符位置、测试字符串的长度等。
 
 ```csharp
 var pos = 0;
@@ -105,29 +99,30 @@ var len = format.Length;
 var ch = '\x0';
 ```
 
-And get the formatter which provides formatting service for the specified type.
+并获取语言格式化选项。
 
 ```csharp
 var cf = provider != null ? (ICustomFormatter)provider.GetFormat(typeof(ICustomFormatter)) : null;
 ```
 
-Then we can iterate all characters and return current instance.
+然后我们便可以开始遍历了，并最终返回自己。
 
 ```csharp
 while (pos < len)
 {
     // ToDo: Append characters.
+
     pos++;
 }
  
 return this;
 ```
 
-Now we need implement the while loop.
+接下来，我们要开始实现这个循环。
 
 ## 追加普通字符
 
-Because the string contains placeholder, we need check filter them and add normal ones. So we need update the To-Do in the above while loop as following. It needs another while loop before position increasing.
+因为字符串可能包含占位符，我们需要找到它们，并先把普通字符串进行插入。于是，我们将前面代码中 To-Do 的部分改写如下，这将是另一个循环，并放在 `pos++` 之前。
 
 ```csharp
 while (pos < len)
@@ -148,16 +143,16 @@ while (pos < len)
 }
 ```
 
-It get current character and check if it is a brace ("{" or "}"). Append the character if it is not.
+这将逐个获取单个字符，并检测其是否为大括号（“{”或“}”），如果不是地话，则将其插入。
 
-For left brace ("{"), we need break this while loop to get the format item.
+对于左大括号（“{”），我们认为这可能将开始一个占位符，因此我们需要退出当前循环，以便在后面进行识别和处理。由于之后还会对 `pos++`，因此我们先自减一次以抵消。
 
 ```csharp
 pos--;
 break;
 ```
 
-However, we need convert to normal character left brace ("{") if it is 2 left braces ("{{"). So we need update it as following.
+然而，如果是两个左大括号连在一起（“{{”），那我们认为这只是一个普通文本的左大括号而已，而非占位符。因此需要把上述代码改写如下。
 
 ```csharp
 if (pos < len && format[pos] == '{')
@@ -169,7 +164,7 @@ else
 }
 ```
 
-As same as right brace ("}"). We need convert to normal one for 2 right braces ("{{") and throw exception if there is only one.
+同理，针对右大括号（“}”），我们也需要进行识别，同时将双右大括号转为普通文本。若识别到了，显然这并不符合预期，因为肯定要先有做大括号，才会有右大括号。
 
 ```csharp
 if (pos < len && format[pos] == '}')
@@ -178,32 +173,26 @@ else
     throw new FormatException();
 ```
 
-So we have append all normal characters to the StringBuilder and get the format items.
+至此，其实我们将所有普通文本都插入进了 `StringBuild` 类的实例当中去了，并识别了占位符的起始位置。
 
-## 获取参数
+## 解析占位符
 
-When the above while loop is break, it is in format items route. We need add logic after the position increasing in the outer while loop.
+若前面的第二层循环跳出了，说明当前是一个占位符，因此我们需要进行识别和映射。
 
-The syntax of format item is `index[,length][:formatString]` with outermost braces ("{" and "}").
+占位符的语法为 `index[,length][:formatString]`，并放在大括号（“{”和“}”）内.
 
-- index
+- `index`：一个从索引数值，从 0 开始，用于指示该占位符对应其后对象数组中的第几个对象，并格式化输出；如果该对应的对象为空（`null`），则被替换为空字符串；如果没有对应的对象映射，则抛 `FormatException` 异常。
+- `length`：最少显示多个个字符，不够的从左边开始填充空格；如果非负数，则从右边开始填充空格。
+- `formatString`: 一个标准或自定义格式化选项字符串。
 
-  The zero-based position in the parameter list of the object to be formatted. If the object specified by index is null, the format item is replaced by String.Empty. If there is no parameter in the index position, a FormatException is thrown.
-- length 
-
-  The minimum number of characters in the string representation of the parameter. If positive, the parameter is right-aligned; if negative, it is left-aligned.
-- formatString
-
-  A standard or custom format string that is supported by the parameter.
-
-So we need get index firstly. After the position increases, we are in the position after the left brace ("{"). So that character should be a number.
+首先我们需要获取索引值。在外层循环的末尾，`pos++` 的后面，加入以下代码。由于当下我们正处于左大括号后面，因此我们要求必须为数字。
 
 ```csharp
 if (pos == len || (ch = format[pos]) < '0' || ch > '9')
     throw new FormatException();
 ```
 
-Then need resolve the value of index by getting the character one by one for computing until it is not a number. The maximum value of index is 999,999.
+然后开始对其后每个字符进行逐个检查，直至为为非数字。每获取一个字符，则和前面的结果进行运算，以得到索引号。索引号不能超过过一个最大值，如 999,999。
 
 ```csharp
 int index = 0;
@@ -217,24 +206,24 @@ do
 while (ch >= '0' && ch <= '9' && index < 1000000);
 ```
 
-So we can resolve the argument which the index correspond to.
+因此，我们可以轻松映射了。
 
 ```csharp
 var arg = args[index];
 ```
 
-This will be formatted to append later.
+这个就是对应的要格式化的对象了。
 
 ## 获取最小长度
 
-Remove the white spaces after the index if has.
+接着，我们需要移除数字后面可能存在的空格，之后还有多处也需要去除多余空格。
 
 ```csharp
 if (index >= args.Length) throw new FormatException();
 while (pos < len && (ch = format[pos]) == ' ') pos++;
 ```
 
-Now, we need get its length. It may pad white spaces by left justify or right if the value is shorter than the minimum length so we need a flag indicating whether it is left justify. And then check if it is a comma. If so, a length is there. We need left trim it and begin to get the minimum length value.
+然后我们可以根据可能存在的逗号后面的内容，来开始获取指定的最小长度了。最小长度是可选的，其前面可能也会存在空格，因此也需要去除。
 
 ```csharp
 bool leftJustify = false;
@@ -251,7 +240,7 @@ if (ch == ',')
 }
 ```
 
-The length can be positive or negative for right or left justify. So we need check if there is a negative sign.
+这个长度可以是正数也可以是负数。因此我们需要做一个判断，看看前面是否会有一个负号。
 
 ```csharp
 if (ch == '-')
@@ -263,7 +252,7 @@ if (ch == '-')
 }
 ```
 
-Then the rest characters should be numbers. We can get the minimum length just like to get the index.
+然后在剩余字符串中提取紧挨着的数字，方式如同获取索引值。
 
 ```csharp
 if (ch < '0' || ch > '9')
@@ -278,17 +267,17 @@ do
 while (ch >= '0' && ch <= '9' && width < 1000000);
 ```
 
-Well, let's go outside of the if scope of character equaling comma, we need right trim it.
+好了，我们实现完了这个 `if (ch == ',') { ... }` 了。我们继续在其后面继续处理，当然，要先去除多余的空格。
 
 ```csharp
 while (pos < len && (ch = format[pos]) == ' ') pos++;
 ```
 
-Now we have gotten the minimum length of argument to present.
+现在我们已经获得了所需的最小长度。
 
 ## 格式化参数
 
-And try to get its formatString by the same way. It is after a colon. We need another StringBuilder instance for saving it.
+然后我们需要对可能存在的 `formatString` 进行类似的处理。其位于冒号后面。我们需要创建另一个 `StringBuilder` 对象来储存该值。
 
 ```csharp
 StringBuilder fmt = null;
@@ -327,14 +316,14 @@ if (ch == ':')
 }
 ```
 
-Validate if the end of the format item is a right brace ("}"). If so, continue to increase the position index.
+一切搞定后，还需要验证其结尾是否有一个右大括号。如果是的，我们就需要将之前的 `pos` 自增，以便进行后续的处理。
 
 ```csharp
 if (ch != '}') throw new FormatException();
 pos++;
 ```
 
-Then we need use the formatter to format the argument if has; otherwise, just convert it to string.
+然后，我们需要根据已有的格式化信息，对该占位符所对应的对象进行格式化。
 
 ```csharp
 string fmtStr = null;
@@ -368,23 +357,23 @@ if (s == null)
 }
 ```
 
-The s variable is the string formatted of the argument.
+变量 `s` 即为格式化之后的对象。
 
 ## 追加参数
 
-If the argument string is null, we need use an empty string instead.
+然后我们还是需要判断一下该参数是否为空，是的话，就要用空字符串来替换该占位符。
 
 ```csharp
 if (s == null) s = string.Empty;
 ```
 
-And get the length of padding to append.
+否则的话，我们需要检查其是否超过了最小宽度。
 
 ```csharp
 var pad = width - s.Length;
 ```
 
-Then append the argument string and the white spaces if needed.
+并根据情况，决定是否和如何填充空格。
 
 ```csharp
 if (!leftJustify && pad > 0) Append(' ', pad);
@@ -392,4 +381,4 @@ Append(s);
 if (leftJustify && pad > 0) Append(' ', pad);
 ```
 
-So that's all.
+至此，全部搞定。

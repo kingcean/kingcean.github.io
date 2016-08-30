@@ -18,7 +18,7 @@ Windows Remote Arduino builds a communication architecture like a three layers c
 - Middle layer is about protocol for meaningful message encoding and decoding.
 - Bottom layer is about physical communication to exchange raw data.
 
-![3 Layers](Arduino3Layers.jpg)
+![3 Layers](./Arduino3Layers.jpg)
 
 Windows Remote Arduino provides a `RemoteDevice` class for us to access Arduino and I will introduce it in later section.
 
@@ -30,7 +30,7 @@ So we need [download Arduino IDE](https://www.arduino.cc/en/Main/Software) to in
 
 Connect the Arduino to dev PC via USB. Here I will use a Uno like board for demo.
 
-![Connect Arduino device](WP_20160401_10_07_58_Pro_LI_Screen.jpg)
+![Connect Arduino device](./WP_20160401_10_07_58_Pro_LI_Screen.jpg)
 
 You will see the red power LED ON is on.
 
@@ -42,7 +42,7 @@ Please check Board and Port in Tools menu to confirm if the model and name are c
 
 Navigate to File > Examples > Firmata > StandardFirmata in menu. It will open a new window with codes of StandardFirmata sketch. Go to setup function, you will find `Firmate.begin(57600)` code which is to connect to the device in 57600 bauds per second. You can change the baud as the value in the manual of your Arduino device.
 
-![Standard firmata](ArduinoIdeStandardFirmata.png)
+![Standard firmata](./ArduinoIdeStandardFirmata.png)
 
 Click or tap the Upload button which is a round button with a right arrow. The StandardFirmata sketch will deploy to the Arduino device. Then the Arduino device will run this sketch forever unless reprogrammed with a different one.
 
@@ -50,7 +50,7 @@ Click or tap the Upload button which is a round button with a right arrow. The S
 
 Right click Start button at bottom left corner of the screen. Select Device Manager in the context menu. Under Ports (COM & LPT) group, find your Arduino device. Open its property window, go to Details tab. Select Hardware Ids in Property dropbox. You will get its VID (vender ID) and PID (product ID) which are used to identify it via USB.
 
-![Device manager](ArduinoDevicePropertyHardware.JPG)
+![Device manager](./ArduinoDevicePropertyHardware.JPG)
 
 You may need to save this information if you want to use USB to connect it to remote.
 
@@ -65,7 +65,7 @@ We also can list all devices available so that we do not need an identifier to c
 
 Open Visual Studio 2015 Update 3 (or higher) to add a Blank App (Universal Windows) project which is used to create UWP.
 
-![Create VS project](VsCreateProj.png)
+![Create VS project](./VsCreateProj.png)
 
 You can select any of languages supported in UWP and I will use C# to introduce here.
 
@@ -77,7 +77,7 @@ Install-Package Windows-Remote-Arduino
 
 Or you can also use GUI by right click the project and click Manage NuGet packages in context menu to search Windows-Remote-Arduino. Then choose the one in the list to install.
 
-![NuGet](NuGetArduino.png)
+![NuGet](./NuGetArduino.png)
 
 Now, the project has added the references of the libraries.
 
@@ -220,15 +220,15 @@ And insert following code in the constructor of the `MainPage` class to register
 _arduino.DeviceReady += Setup;
 ```
 
-![MainPage.xaml.cs](MainPageInit.JPG)
+![MainPage.xaml.cs](./MainPageInit.JPG)
 
 The LED will be on when the app runs. Let's have a test.
 
-![Turn on LED](WP_20160401_10_10_40_Pro_LI_Screen.jpg)
+![Turn on LED](./WP_20160401_10_10_40_Pro_LI_Screen.jpg)
 
 It works as what we expect.
 
-![LED id on](WP_20160401_09_43_38_Pro_LI_Screen.jpg)
+![LED id on](./WP_20160401_09_43_38_Pro_LI_Screen.jpg)
 
 And you can also connect further things through a breadboard by wires in a current circuit, such as to use wires connect following one by one.
 
@@ -239,7 +239,7 @@ And you can also connect further things through a breadboard by wires in a curre
 
 So we can control the LED on/off on the breadboard.
 
-![Connect breadboard](WP_20160401_10_15_38_Pro_LI_Screen.jpg)
+![Connect breadboard](./WP_20160401_10_15_38_Pro_LI_Screen.jpg)
 
 Update the Setup() method as following to update digital pin 6.
 
@@ -255,7 +255,7 @@ public void Setup()
 
 Then the LED will be on now when we run the app.
 
-![LED is on on breadboard](WP_20160401_10_21_55_Pro_LI_Screen.jpg)
+![LED is on on breadboard](./WP_20160401_10_21_55_Pro_LI_Screen.jpg)
 
 It will be better if we update the UI to support toggle LED.
 

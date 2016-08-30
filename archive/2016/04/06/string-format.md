@@ -17,15 +17,10 @@ public static string Format(
 ```
 
 Following are the arguments.
-- provider
 
-  An object that supplies culture-specific formatting information.
-- format
-
-  A composite format string.
-- args
-
-  An object array that contains zero or more objects to format.
+- `provider`: An object that supplies culture-specific formatting information.
+- `format`: A composite format string.
+- `args`: An object array that contains zero or more objects to format.
 
 It returns a copy of format in which the format items have been replaced by the string representation of the corresponding objects in args.
 
@@ -36,7 +31,7 @@ var name = "Kingcean";
 var str = string.Format(CultureInfo.CurrentUICulture, "Hi {0}, it is at {1:hh} o'clock now.", name, DateTime.Now);
 ```
 
-The str variable will be following string if it is at 11:00 am now.
+The `str` variable will be following string if it is at 11:00 am now.
 
 ```
 Hi Kingcean, it is at 11 o'clock now.
@@ -46,18 +41,19 @@ Lots of other methods which support composite formatting are based on the `Strin
 
 ## String builder
 
-In fact, dotNet implements `String.Format` static method by [`StringBuilder`](https://msdn.microsoft.com/en-us/library/system.text.stringbuilder.aspx) which is in System.Text namespace.
+In fact, dotNet implements `String.Format` static method by [`StringBuilder`](https://msdn.microsoft.com/en-us/library/system.text.stringbuilder.aspx) which is in `System.Text` namespace.
 
 1. Acquire a `StringBuilder` instance.
-2. Append format to the `StringBuilder` instance.
+2. Format strings and Append them to the `StringBuilder` instance.
 3. Converts to string and release the `StringBuilder` instance.
 
-The StringBuilder class is used to represents a mutable string of characters. It provides some member methods to append object to current string with higher performance than combining strings directly. Following are some examples of its member methods to append something.
+The `StringBuilder` class is used to represents a mutable string of characters. It provides some member methods to append object to current string with higher performance than combining strings directly. Following are some examples of its member methods to append something.
 
 ```csharp
 public StringBuilder Append(char value, int repeatCount = 1); 
 public StringBuilder Append(string value);
 ```
+
 It also support other overloads for further type as argument. And of course, it provide to append an object. The object will be convert to string if it is not null; otherwise, do nothing.
 
 ```csharp
@@ -70,7 +66,7 @@ This class also contain a member method for appending composite format string. S
 public StringBuilder AppendFormat(IFormatProvider provider, string format, params object[] args);
 ```
 
-People can call this method directly, too.
+We can call this method directly, too.
 
 ```csharp
 var name = "Kingcean";
@@ -85,7 +81,7 @@ So we will introduce the implementation of this member method in C# here.
 
 ## Begin to implement
 
-Firstly, we need validate the arguments. Both format and args are required.
+Firstly, we need validate the arguments. Both `format` and `args` are required.
 
 ```csharp
 if (format == null)
@@ -115,6 +111,7 @@ Then we can iterate all characters and return current instance.
 while (pos < len)
 {
     // ToDo: Append characters.
+
     pos++;
 }
  
@@ -125,7 +122,7 @@ Now we need implement the while loop.
 
 ## Append normal characters
 
-Because the string contains placeholder, we need check filter them and add normal ones. So we need update the To-Do in the above while loop as following. It needs another while loop before position increasing.
+Because the string contains placeholder, we need find them and add normal ones firstly. We need update the To-Do in the above while loop as following. It needs another while loop before position increasing.
 
 ```csharp
 while (pos < len)
@@ -176,7 +173,7 @@ else
     throw new FormatException();
 ```
 
-So we have append all normal characters to the StringBuilder and get the format items.
+So we have appended all normal characters to the `StringBuilder` instance and get the position of format items.
 
 ## Resolve argument
 
@@ -184,17 +181,11 @@ When the above while loop is break, it is in format items route. We need add log
 
 The syntax of format item is `index[,length][:formatString]` with outermost braces ("{" and "}").
 
-- index
+- `index`: The zero-based position in the parameter list of the object to be formatted. If the object specified by index is null, the format item is replaced by `String.Empty`. If there is no parameter in the index position, a `FormatException` is thrown.
+- `length`: The minimum number of characters in the string representation of the parameter. If positive, the parameter is right-aligned; if negative, it is left-aligned.
+- `formatString`: A standard or custom format string that is supported by the parameter.
 
-  The zero-based position in the parameter list of the object to be formatted. If the object specified by index is null, the format item is replaced by String.Empty. If there is no parameter in the index position, a FormatException is thrown.
-- length 
-
-  The minimum number of characters in the string representation of the parameter. If positive, the parameter is right-aligned; if negative, it is left-aligned.
-- formatString
-
-  A standard or custom format string that is supported by the parameter.
-
-So we need get index firstly. After the position increases, we are in the position after the left brace ("{"). So that character should be a number.
+So we need get index firstly. After the position increases (`pos++;`), we are in the position after the left brace ("{"). So that character should be a number.
 
 ```csharp
 if (pos == len || (ch = format[pos]) < '0' || ch > '9')
@@ -276,7 +267,7 @@ do
 while (ch >= '0' && ch <= '9' && width < 1000000);
 ```
 
-Well, let's go outside of the if scope of character equaling comma, we need right trim it.
+Well, let's go outside of the `if` scope of character equaling comma, we need right trim it.
 
 ```csharp
 while (pos < len && (ch = format[pos]) == ' ') pos++;
@@ -286,7 +277,7 @@ Now we have gotten the minimum length of argument to present.
 
 ## Format argument
 
-And try to get its formatString by the same way. It is after a colon. We need another StringBuilder instance for saving it.
+And try to get its `formatString` by the same way. It is after a colon. We need another `StringBuilder` instance for saving it.
 
 ```csharp
 StringBuilder fmt = null;
@@ -366,7 +357,7 @@ if (s == null)
 }
 ```
 
-The s variable is the string formatted of the argument.
+The `s` variable is the string formatted of the argument.
 
 ## Append the argument
 

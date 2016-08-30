@@ -23,7 +23,7 @@
 - 物理通信层 – 二进制流。
 Windows 设备和Arduino 设备之间的原始数据通信。
 
-![3 Layers](Arduino3Layers.jpg)
+![3 Layers](./Arduino3Layers.jpg)
 
 之后，我们便可以使用其封装的 `RemoteDevice` 基类来访问目标设备了。
 
@@ -38,13 +38,13 @@ Windows 设备和Arduino 设备之间的原始数据通信。
 
 接下来需要使用 USB 将 Arduino 设备与开发计算机连接。我们这里使用一个经过我们自行改造的类似 Uno 的设备进行演示。你可以在网上购买或自行组装一台 Arduino 设备，但可能接下来的部分设置会略有不同，但大体上差不多。
 
-![Connect Arduino device](WP_20160401_10_07_58_Pro_LI_Screen.jpg)
+![Connect Arduino device](./WP_20160401_10_07_58_Pro_LI_Screen.jpg)
 
 连接后，可以看到设备的红色电源灯 ON 被点亮。
 
 然后运行 Arduino IDE。默认情况下，会初始化一个 Sketch，里面预设了 `setup()` 函数和 `loop()` 函数，前者只会运行一次，后者会被不停地调用到。
 
-![Arduino IDE](ArduinoIde.png)
+![Arduino IDE](./ArduinoIde.png)
 
 然后在该软件的 Tools 菜单中，确认你的设备的型号和名字分别出现在 Board 和 Port 子菜单中。
 
@@ -58,7 +58,7 @@ Windows 设备和Arduino 设备之间的原始数据通信。
 
 在开发计算机中，右键屏幕左下方“开始”按钮，打开 设备管理器，在其中的 Ports (COM & LPT) 分类下，找到你的这个 Arduino 设备。然后打开其属性，并进入 详细 选项卡，在属性下拉框中选择 Hardware Ids，下面会显示其 VID 和 PID，前者是厂商代码（即 Vender ID），后者是产品编号（即 Product ID），这些信息将可用于标识你的这台 USB 连接设备。
 
-![Device manager](ArduinoDevicePropertyHardware.JPG)
+![Device manager](./ArduinoDevicePropertyHardware.JPG)
 
 如果需要用 USB 进行连接，则需要保存这些信息，在之后的过程中，这将会起到作用。
 
@@ -75,7 +75,7 @@ Windows 设备和Arduino 设备之间的原始数据通信。
 
 打开 Visual Studio 2015 Update 3（或更高版本），创建一个新的 Blank App (Windows Universal) 项目，即用于创建 UWP 的空项目。
 
-![Create VS project](VsCreateProj.png)
+![Create VS project](./VsCreateProj.png)
 
 由于 UWP 项目支持多种语言编写，本文将以 C# 做为编程语言来叙述。
 
@@ -87,7 +87,7 @@ Install-Package Windows-Remote-Arduino
 
 也可以右键项目文件，选择管理 NuGet 包，然后在 浏览 选项卡中，搜索 Windows-Remote-Arduino 并在列表中找到该程序引用包进行安装。
 
-![NuGet](NuGetArduino.png)
+![NuGet](./NuGetArduino.png)
 
 然后在项目中打开 Package.appxmanifest 配置文件，增加一下代码，以标明该项目希望获取 USB 访问权限。
 
@@ -248,15 +248,15 @@ public void Setup()
 _arduino.DeviceReady += Setup;
 ```
 
-![MainPage.xaml.cs](MainPageInit.JPG)
+![MainPage.xaml.cs](./MainPageInit.JPG)
 
 当运行这个 App 的时候，该 LED 就会亮起。我们来测试一下看看结果。
 
-![Turn on LED](WP_20160401_10_10_40_Pro_LI_Screen.jpg)
+![Turn on LED](./WP_20160401_10_10_40_Pro_LI_Screen.jpg)
 
 可以看到，正如我们想想的那样。
 
-![LED id on](WP_20160401_09_43_38_Pro_LI_Screen.jpg)
+![LED id on](./WP_20160401_09_43_38_Pro_LI_Screen.jpg)
 
 另外，我们还可以用导线将 Arduino 与面包板进行连接，从而和更多电子元件进行串连。例如，我们可以按照以下端口进行串联。
 
@@ -267,7 +267,7 @@ _arduino.DeviceReady += Setup;
 
 现在，我们计划对该面包板上的 LED 等进行控制。
 
-![Connect breadboard](WP_20160401_10_15_38_Pro_LI_Screen.jpg)
+![Connect breadboard](./WP_20160401_10_15_38_Pro_LI_Screen.jpg)
 
 将之前的 `Setup()` 方法进行如下修改，从而更新数字 Pin 6 的模式和值。
 
@@ -283,7 +283,7 @@ public void Setup()
 
 运行该 App 之后，你会发现该 LED 的确亮了。
 
-![LED is on on breadboard](WP_20160401_10_21_55_Pro_LI_Screen.jpg)
+![LED is on on breadboard](./WP_20160401_10_21_55_Pro_LI_Screen.jpg)
 
 接下来，我们还需要对 App 进行一些改进，以支持基本的交互。
 

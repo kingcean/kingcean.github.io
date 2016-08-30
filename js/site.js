@@ -80,6 +80,7 @@ var site = {};
                 if (!item.id) item.id = fileName;
                 if (!item.date) item.date = fileDate;
                 if (!item.type) item.type = fileExt;
+                item.dir = fileDate
             });
 
             if (!!id) {
@@ -87,6 +88,7 @@ var site = {};
                     if (!item || item.invalid || item.id !== id) return false;
                     $.get("/archive" + item.url).then(function (r2) {
                         var md = new Remarkable();
+                        r2 = r2.replace(/\(.\//g, "(" + item.dir + "/");
                         cntEle.innerHTML = "<h1>" + item.name + "</h1><section>" + md.render(r2) + "</section>" + cntEle.innerHTML;
                     }, function (r) {
 
