@@ -88,7 +88,7 @@ var site = {};
                     if (!item || item.invalid || item.id !== id) return false;
                     $.get("/archive" + item.url).then(function (r2) {
                         var md = new Remarkable();
-                        r2 = r2.replace(/\(.\//g, "(" + item.dir + "/");
+                        r2 = r2.replace(/\(.\//g, "(/archive/" + item.dir + "/");
                         cntEle.innerHTML = "<h1>" + item.name + "</h1><section>" + md.render(r2) + "</section>" + cntEle.innerHTML;
                     }, function (r) {
 
