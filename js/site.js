@@ -41,8 +41,7 @@ var site = {};
     site.head = function () {
         var cntEle = document.createElement("header");
         cntEle.id = "page_head";
-        cntEle.innerHTML = '<section><h1><a href="http://www.kingcean.com/">Kingcean</a></h1>\
-            <ul><li><a href="http://blogs.msdn.com/kingcean/">MSDN</a></li><li class="state-selected-t"><a href="http://github.kingcean.com/">GitHub</a></li><li><a href="https://www.facebook.com/kingcean">Facebook</a></li></ul></section>';
+        cntEle.innerHTML = '<section><h1><a href="http://www.kingcean.com/">Kingcean</a><span> &gt; </span><a href="http://github.kingcean.com/">GitHub</a></h1></section>';
         document.body.appendChild(cntEle);
 
         var cnt2Ele = document.createElement("header");
@@ -83,14 +82,17 @@ var site = {};
                 item.dir = item.url.substring(0, 11);
             });
 
+            var articleStr = "";
             if (!!id) {
+                articleStr = "<h1>" + item.name + "</h1><section><em>Loading...</em></section>";
                 r.list.some(function (item) {
                     if (!item || item.invalid || item.id !== id) return false;
                     $.get("/archive" + item.url).then(function (r2) {
                         var md = new Remarkable();
                         r2 = r2.replace(/\(.\//g, "(/archive/" + item.dir + "/");
-                        cntEle.innerHTML = "<h1>" + item.name + "</h1><section>" + md.render(r2) + "</section>" + cntEle.innerHTML;
+                        cntEle.innerHTML = "<h1>" + item.name + "</h1><section>" + md.render(r2) + "</section>" + cntStr;
                     }, function (r) {
+                        cntEle.innerHTML = "<h1>" + item.name + "</h1><section><em>Failed to load.</em></section>" + cntStr;
 
                     });
                     return true;
@@ -103,7 +105,7 @@ var site = {};
                 cntStr += "<li><a href='?" + item.id + "'>" + item.name + "</a></li>";
             });
             cntStr += "</ul>";
-            cntEle.innerHTML = cntStr;
+            cntEle.innerHTML = articleStr + cntStr;
         }, function (r) {
             cntEle.innerHTML = "<em>Failed to load.</em>";
         });
