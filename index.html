@@ -11,8 +11,29 @@
     body > header + section {
         min-height: 640px; margin-bottom: 60px;
     }
+    section.x-part-sites > a.link-long-button, section.x-part-sites > a.link-long-button:visited {
+        height: 24px; padding: 17px 24px 17px 22px;
+    }
+    section.x-part-sites > a.link-long-button:hover {
+        padding: 15px 24px 19px 22px;
+    }
+    section.x-part-sites > a.link-long-button:active {
+        padding: 17px 24px 17px 22px;
+    }
     section.x-part-sites > a.link-long-button > span:first-child {
-        width: 120px;
+        min-width: 120px;
+    }
+    section.x-part-sites > a.link-long-button > span + span {
+        font-size: 14px;
+    }
+    a#link-item-art {
+        background-image: url(https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/images/bg/jc/title.jpg); background-position: center top; background-repeat: no-repeat; background-size: cover;
+    }
+    a#link-item-net {
+        background-image: url(https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/images/bg/net/title.jpg); background-position: center top; background-repeat: no-repeat;
+    }
+    a#link-item-org {
+        background-image: url(https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/images/bg/org/title.jpg); background-position: center top; background-repeat: no-repeat;
     }
     </style>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/js/site.js" ></script>
@@ -38,17 +59,23 @@
     <section>
         <h2 id="title-projects">Sites</h2>
         <section class="x-part-sites">
-            <a class="link-long-button" href="https://kingcean.net/"><span>.NET</span><span><span>Kingcean.net</span></span>
-            </a><a class="link-long-button" href="https://kingcean.org/"><span>Web Dev</span><span><span>Kingcean.org</span></span>
-            </a><a class="link-long-button" href="https://sth.violty.com/"><span><code>sth</code></span>
+            <a id="link-item-art" class="link-long-button" href="https://jinchen.org/"><span>Jinchen Art</span>
+            </a><a id="link-item-net" class="link-long-button" href="https://kingcean.net/"><span>.NET</span><span>Kingcean.net</span>
+            </a><a id="link-item-org" class="link-long-button" href="https://kingcean.org/"><span>Web Dev</span><span>Kingcean.org</span>
+            </a><a id="link-item-sth" class="link-long-button" href="https://sth.violty.com/"><span><code>sth</code></span>
             </a>
         </section>
         <h2 id="title-community">Community</h2>
-        <section>
-            <a class="link-long-button" href="https://github.com/kingcean">
+        <section class="link-tile-wide">
+            <a href="https://github.com/kingcean">
                 <svg width="24" height="24" aria-hidden="true" viewBox="0 0 16 16" version="1.1" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
                     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
                 </svg><span>GitHub</span>
+            </a>
+            <a href="https://www.weibo.com/u/1869848103">
+                <svg width="24" height="24" aria-hidden="true" viewBox="0 0 16 16" version="1.1" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg><span>Weibo</span>
             </a>
         </section>
     </section>
