@@ -1,6 +1,6 @@
 In dotNet, we always use [`String.Format`](https://msdn.microsoft.com/en-us/library/system.string.format.aspx) static method to replace the format items in a specified string with the string representations of corresponding objects in a specified array. Some of other methods also support the similar feature. We call this as [composite formatting](https://msdn.microsoft.com/en-us/library/txafckwd.aspx). It takes a list of objects and a composite format string as input.
 
-A composite format string consists of fixed text intermixed with indexed placeholders, called format items, that correspond to the objects in the list. The syntax of format item is `index[,length][:formatString]` with outermost braces (`\{` and `\}`). The formatting operation yields a result string that consists of the original fixed text intermixed with the string representation of the objects in the list.
+A composite format string consists of fixed text intermixed with indexed placeholders, called format items, that correspond to the objects in the list. The syntax of format item is `index[,length][:formatString]` with outermost braces (`{` and `}`). The formatting operation yields a result string that consists of the original fixed text intermixed with the string representation of the objects in the list.
 
 But how can we implement it?
 
@@ -143,16 +143,16 @@ while (pos < len)
 }
 ```
 
-It get current character and check if it is a brace (`\{` or `\}`). Append the character if it is not.
+It get current character and check if it is a brace (`{` or `}`). Append the character if it is not.
 
-For left brace (`\{`), we need break this while loop to get the format item.
+For left brace (`{`), we need break this while loop to get the format item.
 
 ```csharp
 pos--;
 break;
 ```
 
-However, we need convert to normal character left brace (`\{`) if it is 2 left braces (`\{\{`). So we need update it as following.
+However, we need convert to normal character left brace (`{`) if it is 2 left braces (`{{`). So we need update it as following.
 
 ```csharp
 if (pos < len && format[pos] == '{')
@@ -164,7 +164,7 @@ else
 }
 ```
 
-As same as right brace (`\}`). We need convert to normal one for 2 right braces (`\{\{`) and throw exception if there is only one.
+As same as right brace (`}`). We need convert to normal one for 2 right braces (`{{`) and throw exception if there is only one.
 
 ```csharp
 if (pos < len && format[pos] == '}')
@@ -179,13 +179,13 @@ So we have appended all normal characters to the `StringBuilder` instance and ge
 
 When the above while loop is break, it is in format items route. We need add logic after the position increasing in the outer while loop.
 
-The syntax of format item is `index[,length][:formatString]` with outermost braces (`\{` and `\}`).
+The syntax of format item is `index[,length][:formatString]` with outermost braces (`{` and `}`).
 
 - `index`: The zero-based position in the parameter list of the object to be formatted. If the object specified by index is null, the format item is replaced by `String.Empty`. If there is no parameter in the index position, a `FormatException` is thrown.
 - `length`: The minimum number of characters in the string representation of the parameter. If positive, the parameter is right-aligned; if negative, it is left-aligned.
 - `formatString`: A standard or custom format string that is supported by the parameter.
 
-So we need get index firstly. After the position increases (`pos++;`), we are in the position after the left brace (`\{`). So that character should be a number.
+So we need get index firstly. After the position increases (`pos++;`), we are in the position after the left brace (`{`). So that character should be a number.
 
 ```csharp
 if (pos == len || (ch = format[pos]) < '0' || ch > '9')
@@ -316,7 +316,7 @@ if (ch == ':')
 }
 ```
 
-Validate if the end of the format item is a right brace (`\}`). If so, continue to increase the position index.
+Validate if the end of the format item is a right brace (`}`). If so, continue to increase the position index.
 
 ```csharp
 if (ch != '}') throw new FormatException();

@@ -54,7 +54,7 @@ For string, number, Boolean or array, it will fail to parse, neither. So how abo
 
 1. Test if it is empty.
 2. Trim.
-3. Find if character "{" or ":" is at the special position in the string. If so, we should not add the outermost braces; otherwise, do as what you do before.
+3. Find if character `{` or `:` is at the special position in the string. If so, we should not add the outermost braces; otherwise, do as what you do before.
 
 Then we write following code.
 
