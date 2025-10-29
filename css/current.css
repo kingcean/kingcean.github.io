@@ -1,0 +1,13 @@
+body > header:first-child, body > footer:last-child {
+    background-image: url(https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/images/bg/jc/heart_dark.jpg);
+    background-position-x: 50%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-size: 240px;
+}
+body > header:first-child {
+    border-bottom: 1px solid #333;
+}
+body > footer:last-child {
+    border-top: 1px solid #333;
+}
