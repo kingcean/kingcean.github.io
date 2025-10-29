@@ -152,7 +152,7 @@ pos--;
 break;
 ```
 
-However, we need convert to normal character left brace (`{`) if it is 2 left braces (`{{`). So we need update it as following.
+However, we need convert to normal character left brace (`{`) if it is 2 left braces ("\{\{"). So we need update it as following.
 
 ```csharp
 if (pos < len && format[pos] == '{')
@@ -164,7 +164,7 @@ else
 }
 ```
 
-As same as right brace (`}`). We need convert to normal one for 2 right braces (`{{`) and throw exception if there is only one.
+As same as right brace (`}`). We need convert to normal one for 2 right braces ("\{\{") and throw exception if there is only one.
 
 ```csharp
 if (pos < len && format[pos] == '}')
