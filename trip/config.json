@@ -1,0 +1,120 @@
+﻿{
+    "$schema": "https://cdn.jsdelivr.net/npm/hje@2.4.6/dist/mdblogs.schema.json",
+    "name": "Travel Notes",
+    "name#zh": "游记",
+    "blog": [
+        {
+            "name": "河西走廊",
+            "intro": "沿着狭长的河西走廊一路前行，感受着广袤无边的大漠风情中，千百年来的文化璀璨。",
+            "dir": "hexi",
+            "file": true,
+            "date": "20230727",
+            "end": true,
+            "related": [
+                {
+                    "name": "微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309404928257639448928"
+                }
+            ],
+            "options": {
+                "banner": {
+                    "url": "./2023/hexi/photos/20230713_200248.webp"
+                }
+            }
+        },
+        {
+            "name": "万有引力号",
+            "intro": "宇宙之大，我们只是沧海一粟，使命之下，星辰大海，乘星舰穿梭，只为了人类的荣誉和未来。",
+            "dir": "gravity",
+            "file": true,
+            "date": "20231113",
+            "end": true,
+            "related": [
+                {
+                    "name": "微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309404967694884536367"
+                }
+            ],
+            "notes": [
+                "本文包含部分虚构情节。"
+            ]
+        },
+        {
+            "name": "霍格沃兹",
+            "intro": "魔法世界虽然奇幻隐蔽，但其实也是充满温馨和和谐，传承经典，孜孜不倦。",
+            "dir": "hogwarts",
+            "file": true,
+            "date": "20231204",
+            "end": true,
+            "related": [
+                {
+                    "name": "微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309404975181847199824"
+                }
+            ],
+            "notes": [
+                "本文包含部分虚构情节。"
+            ]
+        },
+        {
+            "name": "欧洲当代地缘",
+            "intro": "参加中欧话未来系列主题论坛，倾听探讨过去数年世界变数下的治理体系。",
+            "dir": "ceibs",
+            "file": true,
+            "date": "20240118",
+            "end": true,
+            "related": [
+                {
+                    "name": "微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309404991683367403675"
+                }
+            ]
+        },
+        {
+            "name": "朝鲜王朝",
+            "intro": "从景福宫到青瓦台，从江南到明洞，首尔的古往今来，梦境中的简短穿越。",
+            "dir": "korea",
+            "file": true,
+            "date": "20250524",
+            "end": true,
+            "related": [
+                {
+                    "name": "微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405169776405381633"
+                }
+            ],
+            "notes": [
+                "本文包含部分虚构情节。"
+            ]
+        },
+        {
+            "name": "雍和宫",
+            "intro": "作为龙潜福地，雍和宫精致而宏大，建造规格显尽皇家敕建气势。",
+            "dir": "yonghe",
+            "file": true,
+            "date": "20250626",
+            "end": true,
+            "related": [
+                {
+                    "name": "微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405181733422366755"
+                }
+            ],
+            "notes": [
+                "本文包含部分虚构情节。"
+            ]
+        }
+    ],
+    "links": [
+    ],
+    "redir": {
+    },
+    "$defs": {
+        "contributors": [
+            { "name": "Kingcean Tuan", "url": "https://kingcean.github.io" }
+        ],
+        "keywords": [
+            { "name": "Trip", "name#zh": "旅游", "value": "trip" }
+        ]
+    }
+}

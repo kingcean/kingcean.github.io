@@ -11,3 +11,15 @@ body > header:first-child {
 body > footer:last-child {
     border-top: 1px solid #333;
 }
+#blog_content > article > main > p > img {
+    max-width: 640px;
+    border-radius: 4px;
+}
+#blog_content > article > main > ul > li > img, #blog_content > article > main > ol > li > img {
+    max-width: 600px;
+}
+#blog_content > article > main > hr {
+    color: #666;
+    margin: 20px 0;
+    border-style: solid none none none;
+}
