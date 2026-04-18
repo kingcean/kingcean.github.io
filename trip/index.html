@@ -12,30 +12,51 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked@16.2.1/lib/marked.umd.js" ></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.4.6/docs/js/mdblogs.js" ></script>
+    <script type="text/javascript">
+    const strings = {
+        sites: "Sites",
+        "sites#zh": "站点",
+        home: "Home",
+        "home#zh": "主页",
+        fe: "FE",
+        "fe#zh": "前端",
+        community: "Community",
+        "community#zh": "社区",
+        otherLinks: "Other links",
+        "otherLinks#zh": "更多链接",
+        jinchenArt: "Jinchen Art",
+        "jinchenArt#zh": "金辰艺术",
+        travelNotes: "Travel notes",
+        "travelNotes#zh": "游记",
+        name: "Kingcean"
+    };
+    function onInit() {
+        DeepX.MdBlogs.render("blog_content", "./config.json", { title: true });
+        DeepX.MdBlogs.setElementText("topmenu-blogs", "blogs");
+        DeepX.MdBlogs.setElementProp("menu-fe", null, DeepX.MdBlogs.getLocaleProp(strings, "fe"));
+        DeepX.MdBlogs.setElementProp("footer-text-sub", null, DeepX.MdBlogs.getLocaleProp(strings, "travelNotes"));
+    }
+    </script>
 </head>
-<body>
+<body onload="onInit()">
     <header>
         <section>
-            <h1><a href="https://kingcean.github.io/"><strong>Kingcean</strong></a></h1>
+            <h1><img alt="Kingcean.org" src="../images/logos/tuans-s.png" /><a href="https://kingcean.github.io/"><strong>Kingcean</strong></a></h1>
             <ul>
                 <li>
-                    <a href="https://kingcean.net/">.NET</a>
+                    <a id="menu-net" href="https://kingcean.net/">.NET</a>
                 </li>
                 <li>
-                    <a href="https://kingcean.org/">Web Dev</a>
+                    <a id="menu-fe" href="https://kingcean.org/">FE</a>
                 </li>
             </ul>
         </section>
     </header>
     <section id="blog_content" ></section>
-    <script type="text/javascript">
-        DeepX.MdBlogs.render("blog_content", "./config.json", { title: true });
-        DeepX.MdBlogs.setElementText("topmenu-blogs", "blogs");
-    </script>
     <footer>
         <section>
             <div class="x-copyright">
-                <span>&copy; Kingcean Tuan 2025 &nbsp; | &nbsp; Home</span>
+                <span><span>&copy; Kingcean Tuan 2025</span><span> &nbsp; | &nbsp; </span><span id="footer-text-sub">Home</span></span>
             </div>
         </section>
     </footer>

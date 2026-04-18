@@ -48,12 +48,34 @@
             "end": true,
             "related": [
                 {
+                    "name": "环球影城",
+                    "url": "?2023/hogwarts/universal"
+                },
+                "转载",
+                {
                     "name": "微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309404975181847199824"
                 }
             ],
             "notes": [
                 "本文包含部分虚构情节。"
+            ],
+            "children": [
+                {
+                    "name": "环球影城",
+                    "intro": "上次去的还是大阪，这次去的已在北京。两年多前开园，今天才找到机会前往，好好游玩。",
+                    "dir": "hogwarts",
+                    "file": "universal.md",
+                    "date": "20231203",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -102,6 +124,20 @@
             ],
             "notes": [
                 "本文包含部分虚构情节。"
+            ]
+        },
+        {
+            "name": "青岛",
+            "intro": "滨海、海湾、丘陵，近代的痕迹、现代的雄伟，有啤酒也有帆船，还有温带季风的舒适。",
+            "dir": "tsingtao",
+            "file": true,
+            "date": "20250721",
+            "end": true,
+            "related": [
+                {
+                    "name": "微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405190791697400122"
+                }
             ]
         }
     ],
