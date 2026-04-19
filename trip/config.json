@@ -12,6 +12,7 @@
             "location": "甘肃",
             "end": true,
             "related": [
+                "转载",
                 {
                     "name": "微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309404928257639448928"
@@ -25,7 +26,7 @@
         },
         {
             "name": "云南自驾",
-            "intro": "金生丽水，华夏西南边陲一块美丽富饶的土地，茶马古道、玉龙雪山、虎跳峡，品一番独特韵味。",
+            "intro": "从丽江到香格里拉，从茶马古道到香巴拉世外桃源，感受华夏西南边陲的美丽富饶，感受自然和人文之美。",
             "dir": "yunnan",
             "file": true,
             "date": "20230910",
@@ -128,6 +129,7 @@
             "date": "20231113",
             "end": true,
             "related": [
+                "转载",
                 {
                     "name": "微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309404967694884536367"
@@ -185,9 +187,26 @@
             "location": "上海",
             "end": true,
             "related": [
+                "转载",
                 {
                     "name": "微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309404991683367403675"
+                }
+            ]
+        },
+        {
+            "name": "香港漫步",
+            "intro": "在九龙和香港岛徒步旅行，密集繁华的高楼街市和湿咸凉爽的阵阵海风，带来奇特风采。",
+            "dir": "hongkong",
+            "file": true,
+            "date": "20241006",
+            "location": "香港",
+            "end": true,
+            "related": [
+                "转载",
+                {
+                    "name": "微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405086287320186903"
                 }
             ]
         },
@@ -200,6 +219,7 @@
             "location": "首尔",
             "end": true,
             "related": [
+                "转载",
                 {
                     "name": "微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405169776405381633"
@@ -218,6 +238,7 @@
             "location": "北京",
             "end": true,
             "related": [
+                "转载",
                 {
                     "name": "微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405181733422366755"
@@ -236,6 +257,7 @@
             "location": "青岛",
             "end": true,
             "related": [
+                "转载",
                 {
                     "name": "微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405190791697400122"
