@@ -47,14 +47,7 @@
                     "dir": "yunnan",
                     "file": "prequel.md",
                     "date": "20230903",
-                    "end": true,
-                    "related": [
-                        "转载",
-                        {
-                            "name": "微博文章",
-                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
-                        }
-                    ]
+                    "end": true
                 },
                 {
                     "name": "再赴丽江",
@@ -68,7 +61,7 @@
                         "转载",
                         {
                             "name": "微博文章",
-                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404943479464919364"
                         }
                     ]
                 },
@@ -84,7 +77,7 @@
                         "转载",
                         {
                             "name": "微博文章",
-                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404943834189791690"
                         }
                     ]
                 },
@@ -100,7 +93,7 @@
                         "转载",
                         {
                             "name": "微博文章",
-                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404944192286884750"
                         }
                     ]
                 },
@@ -116,7 +109,7 @@
                         "转载",
                         {
                             "name": "微博文章",
-                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404944382552834183"
                         }
                     ],
                     "options": {
