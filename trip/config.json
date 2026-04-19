@@ -9,6 +9,7 @@
             "dir": "hexi",
             "file": true,
             "date": "20230727",
+            "location": "甘肃",
             "end": true,
             "related": [
                 {
@@ -21,6 +22,110 @@
                     "url": "./2023/hexi/photos/20230713_200248.webp"
                 }
             }
+        },
+        {
+            "name": "云南自驾",
+            "intro": "金生丽水，华夏西南边陲一块美丽富饶的土地，茶马古道、玉龙雪山、虎跳峡，品一番独特韵味。",
+            "dir": "yunnan",
+            "file": true,
+            "date": "20230910",
+            "location": "香格里拉",
+            "end": {
+                "end": true,
+                "urls": [
+                    { "old": "./prequel/", "by": "?2023/yunnan/prequel" },
+                    { "old": "./lijiang/", "by": "?2023/yunnan/lijiang" },
+                    { "old": "./sum-rtsen-gling/", "by": "?2023/yunnan/sum-rtsen-gling" },
+                    { "old": "./shangri-la/", "by": "?2023/yunnan/shangri-la" },
+                    { "old": "./pasture/", "by": "?2023/yunnan/pasture" }
+                ]
+            },
+            "children": [
+                {
+                    "name": "前传",
+                    "intro": "收获前往参加“丽江-香格里拉”自驾行活动，期待精彩旅行。",
+                    "dir": "yunnan",
+                    "file": "prequel.md",
+                    "date": "20230903",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                        }
+                    ]
+                },
+                {
+                    "name": "再赴丽江",
+                    "intro": "金生丽水，华夏西南边陲一块美丽富饶的土地，茶马古道、玉龙雪山、虎跳峡，品一番独特韵味。",
+                    "dir": "yunnan",
+                    "file": "lijiang.md",
+                    "date": "20230907",
+                    "location": "丽江",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                        }
+                    ]
+                },
+                {
+                    "name": "松赞林",
+                    "intro": "香巴拉是一种类似伊甸园或世外桃源的存在，其隐秘之门便在世间净土香格里拉。",
+                    "dir": "yunnan",
+                    "file": "sum-rtsen-gling.md",
+                    "date": "20230908",
+                    "location": "香格里拉",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                        }
+                    ]
+                },
+                {
+                    "name": "心中的日月",
+                    "intro": "每个人都有自己的追求和热爱，只是世间繁杂困惑交错，只有慢下脚步仔细聆听，才能重新感悟。",
+                    "dir": "yunnan",
+                    "file": "shangri-la.md",
+                    "date": "20230909",
+                    "location": "香格里拉",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                        }
+                    ]
+                },
+                {
+                    "name": "纳颂牧场",
+                    "intro": "以前从来没去过藏区牧场，尤其是没有信号的，这次有幸体验，别具一格。",
+                    "dir": "yunnan",
+                    "file": "pasture.md",
+                    "date": "20230910",
+                    "location": "香格里拉",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
+                        }
+                    ],
+                    "options": {
+                        "banner": {
+                            "url": "./2023/yunnan/images/thumbnails/20230909_114419.webp"
+                        }
+                    }
+                }
+            ]
         },
         {
             "name": "万有引力号",
@@ -84,6 +189,7 @@
             "dir": "ceibs",
             "file": true,
             "date": "20240118",
+            "location": "上海",
             "end": true,
             "related": [
                 {
@@ -98,6 +204,7 @@
             "dir": "korea",
             "file": true,
             "date": "20250524",
+            "location": "首尔",
             "end": true,
             "related": [
                 {
@@ -115,6 +222,7 @@
             "dir": "yonghe",
             "file": true,
             "date": "20250626",
+            "location": "北京",
             "end": true,
             "related": [
                 {
@@ -132,6 +240,7 @@
             "dir": "tsingtao",
             "file": true,
             "date": "20250721",
+            "location": "青岛",
             "end": true,
             "related": [
                 {
