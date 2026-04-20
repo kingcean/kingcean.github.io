@@ -25,12 +25,33 @@
             }
         },
         {
+            "name": "出海",
+            "intro": "浪花、海风、沙滩，加上美妙的风景和美味的海鲜，似乎海岛始终给人们无线的遐想，悠闲自然。",
+            "dir": "shengsi",
+            "file": true,
+            "date": "20230729",
+            "location": "嵊泗",
+            "end": true,
+            "related": [
+                "转载",
+                {
+                    "name": "出海 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309404928779255677338"
+                }
+            ],
+            "options": {
+                "banner": {
+                    "url": "./2023/shengsi/screennails/20230604_073737.webp"
+                }
+            }
+        },
+        {
             "name": "云南自驾",
             "intro": "从丽江到香格里拉，从茶马古道到香巴拉世外桃源，感受华夏西南边陲的美丽富饶，感受自然和人文之美。",
             "dir": "yunnan",
             "file": true,
             "date": "20230910",
-            "location": "迪庆",
+            "location": "香格里拉",
             "end": {
                 "end": true,
                 "urls": [
@@ -48,7 +69,19 @@
                     "dir": "yunnan",
                     "file": "prequel.md",
                     "date": "20230903",
-                    "end": true
+                    "end": true,
+                    "related": [
+                        "启程",
+                        {
+                            "name": "再赴丽江",
+                            "url": "?2023/yunnan/lijiang"
+                        },
+                        "相关游记",
+                        {
+                            "name": "河西走廊",
+                            "url": "?2023/hexi"
+                        }
+                    ]
                 },
                 {
                     "name": "再赴丽江",
@@ -59,6 +92,19 @@
                     "location": "丽江",
                     "end": true,
                     "related": [
+                        "继续",
+                        {
+                            "name": "松赞林",
+                            "url": "?2023/yunnan/sum-rtsen-gling"
+                        },
+                        {
+                            "name": "心中的日月",
+                            "url": "?2023/yunnan/shangri-la"
+                        },
+                        {
+                            "name": "纳颂牧场",
+                            "url": "?2023/yunnan/pasture"
+                        },
                         "转载",
                         {
                             "name": "再赴丽江 - 微博文章",
@@ -72,9 +118,23 @@
                     "dir": "yunnan",
                     "file": "sum-rtsen-gling.md",
                     "date": "20230908",
-                    "location": "迪庆",
+                    "location": "香格里拉",
                     "end": true,
                     "related": [
+                        "继续",
+                        {
+                            "name": "心中的日月",
+                            "url": "?2023/yunnan/shangri-la"
+                        },
+                        {
+                            "name": "纳颂牧场",
+                            "url": "?2023/yunnan/pasture"
+                        },
+                        "前一天",
+                        {
+                            "name": "再赴丽江",
+                            "url": "?2023/yunnan/lijiang"
+                        },
                         "转载",
                         {
                             "name": "松赞林 - 微博文章",
@@ -88,9 +148,14 @@
                     "dir": "yunnan",
                     "file": "shangri-la.md",
                     "date": "20230909",
-                    "location": "迪庆",
+                    "location": "香格里拉",
                     "end": true,
                     "related": [
+                        "继续",
+                        {
+                            "name": "纳颂牧场",
+                            "url": "?2023/yunnan/pasture"
+                        },
                         "转载",
                         {
                             "name": "心中的日月 - 微博文章",
@@ -104,13 +169,26 @@
                     "dir": "yunnan",
                     "file": "pasture.md",
                     "date": "20230910",
-                    "location": "迪庆",
+                    "location": "香格里拉",
                     "end": true,
                     "related": [
                         "转载",
                         {
                             "name": "纳颂牧场 - 微博文章",
                             "url": "https://weibo.com/ttarticle/p/show?id=2309404944382552834183"
+                        },
+                        "回顾",
+                        {
+                            "name": "再赴丽江",
+                            "url": "?2023/yunnan/lijiang"
+                        },
+                        {
+                            "name": "松赞林",
+                            "url": "?2023/yunnan/sum-rtsen-gling"
+                        },
+                        {
+                            "name": "心中的日月",
+                            "url": "?2023/yunnan/shangri-la"
                         }
                     ],
                     "options": {
@@ -209,6 +287,13 @@
                     { "old": "./forbidden", "by": "?2024/peking/forbidden" }
                 ]
             },
+            "related": [
+                "相关游记",
+                {
+                    "name": "雍和宫",
+                    "url": "?2025/yonghe"
+                }
+            ],
             "children": [
                 {
                     "name": "天坛",
@@ -219,6 +304,20 @@
                     "location": "北京",
                     "end": true,
                     "related": [
+                        "继续",
+                        {
+                            "name": "从什刹海到北海",
+                            "url": "?2024/peking/seas"
+                        },
+                        {
+                            "name": "紫禁城",
+                            "url": "?2024/peking/forbidden"
+                        },
+                        "相关游记",
+                        {
+                            "name": "朝鲜王朝",
+                            "url": "?2025/korea"
+                        },
                         "转载",
                         {
                             "name": "天坛 - 微博文章",
@@ -240,10 +339,20 @@
                     "location": "北京",
                     "end": true,
                     "related": [
+                        "继续",
+                        {
+                            "name": "紫禁城",
+                            "url": "?2024/peking/forbidden"
+                        },
                         "转载",
                         {
                             "name": "从什刹海到北海 - 微博文章",
                             "url": "https://weibo.com/ttarticle/p/show?id=2309405043515708276939"
+                        },
+                        "回顾",
+                        {
+                            "name": "天坛",
+                            "url": "?2024/peking/heaven"
                         }
                     ],
                     "options": {
@@ -261,10 +370,24 @@
                     "location": "北京",
                     "end": true,
                     "related": [
+                        "相关游记",
+                        {
+                            "name": "朝鲜王朝",
+                            "url": "?2025/korea"
+                        },
                         "转载",
                         {
                             "name": "紫禁城 - 微博文章",
                             "url": "https://weibo.com/ttarticle/p/show?id=2309405043836991963321"
+                        },
+                        "回顾",
+                        {
+                            "name": "天坛",
+                            "url": "?2024/peking/heaven"
+                        },
+                        {
+                            "name": "从什刹海到北海",
+                            "url": "?2024/peking/seas"
                         }
                     ],
                     "options": {
@@ -292,6 +415,26 @@
             ]
         },
         {
+            "name": "海南闪电游",
+            "intro": "越过琼州海峡：历史海滨城市海口，海滩与火山，自带自然旖旎风光；海南西线明珠风光秀丽特色分明，各类风格建筑物和主题区显现出别样景观。",
+            "dir": "hainan",
+            "file": true,
+            "date": "20250512",
+            "location": "海口",
+            "end": true,
+            "related": [
+                "转载",
+                {
+                    "name": "海口闪电游 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405165275912994918"
+                },
+                {
+                    "name": "海花岛 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405165509313429726"
+                }
+            ]
+        },
+        {
             "name": "朝鲜王朝",
             "intro": "从景福宫到青瓦台，从江南到明洞，首尔的古往今来，梦境中的简短穿越。",
             "dir": "korea",
@@ -300,6 +443,27 @@
             "location": "首尔",
             "end": true,
             "related": [
+                {
+                    "name": "赴首尔",
+                    "url": "?2025/korea/seoul"
+                },
+                "相关游记",
+                {
+                    "name": "雍和宫",
+                    "url": "?2025/yonghe"
+                },
+                {
+                    "name": "天坛",
+                    "url": "?2024/peking/heaven"
+                },
+                {
+                    "name": "从什刹海到北海",
+                    "url": "?2024/peking/seas"
+                },
+                {
+                    "name": "紫禁城",
+                    "url": "?2024/peking/forbidden"
+                },
                 "转载",
                 {
                     "name": "朝鲜王朝 - 微博文章",
@@ -308,6 +472,17 @@
             ],
             "notes": [
                 "本文包含部分虚构情节。"
+            ],
+            "children": [
+                {
+                    "name": "赴首尔",
+                    "intro": "古都首尔现如今是一座繁华的现代化都市，尤其是江南区更是高楼与烟火同在。",
+                    "dir": "korea",
+                    "file": "seoul.md",
+                    "date": "20250521",
+                    "location": "首尔",
+                    "end": true
+                }
             ]
         },
         {
@@ -323,11 +498,49 @@
                 {
                     "name": "雍和宫 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405181733422366755"
+                },
+                "相关游记",
+                {
+                    "name": "朝鲜王朝",
+                    "url": "?2025/korea"
+                },
+                {
+                    "name": "天坛",
+                    "url": "?2024/peking/heaven"
+                },
+                {
+                    "name": "从什刹海到北海",
+                    "url": "?2024/peking/seas"
+                },
+                {
+                    "name": "紫禁城",
+                    "url": "?2024/peking/forbidden"
                 }
             ],
             "notes": [
                 "本文包含部分虚构情节。"
             ]
+        },
+        {
+            "name": "景德镇",
+            "intro": "瓷都可不是徒有虚名，从艺术 china 到创作全链路应有尽有，也不乏时尚热闹和烟火气息。",
+            "dir": "jingdezhen",
+            "file": true,
+            "date": "20250706",
+            "location": "景德镇",
+            "end": true,
+            "related": [
+                "转载",
+                {
+                    "name": "景德镇 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405185483696373973"
+                }
+            ],
+            "options": {
+                "banner": {
+                    "url": "./2025/jingdezhen/screennails/20250705_110222.webp"
+                }
+            }
         },
         {
             "name": "青岛",
@@ -342,6 +555,37 @@
                 {
                     "name": "青岛 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405190791697400122"
+                }
+            ]
+        },
+        {
+            "name": "天府之国",
+            "intro": "从生态乐园，到神话故事，到历史典籍，到烟火市井，有大熊猫繁育研究基地，有青城山、都江堰，有武侯祠，有锦里、太古里，随逛随吃随想。",
+            "dir": "chengdu",
+            "file": true,
+            "date": "20260208",
+            "location": "成都",
+            "end": true,
+            "related": [
+                {
+                    "name": "三星堆",
+                    "url": "?2026/chengdu/sanxingdui"
+                },
+                "转载",
+                {
+                    "name": "天府之国 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405264019283116204"
+                }
+            ],
+            "children": [
+                {
+                    "name": "三星堆",
+                    "intro": "古蜀三星伴月之地，神权史前文化，商代中后期中华文明于西南之演绎，大立人、金权杖、青铜通天树、戴冠纵目面具、金鸟形饰，满满奇特发散想象力，有趣而又有智慧。",
+                    "dir": "chengdu",
+                    "file": "sanxingdui.md",
+                    "date": "20260205",
+                    "location": "广汉",
+                    "end": true
                 }
             ]
         }
