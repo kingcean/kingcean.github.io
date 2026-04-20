@@ -10,4 +10,4 @@
 
 期待丽江与香格里拉！
 
-![路书](./images/publish/plan.webp)
+![路书](./images/publication/plan.webp)

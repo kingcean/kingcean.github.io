@@ -200,11 +200,116 @@
             ]
         },
         {
+            "name": "江西山川",
+            "intro": "井冈山、龙虎山、灵山，江西的山川既壮观又秀丽，更是深藏人文底蕴，魅力无穷。",
+            "dir": "hills",
+            "file": true,
+            "date": "20231003",
+            "end": {
+                "end": true,
+                "urls": [
+                    { "old": "./jinggang/", "by": "?2023/hills/jinggang" },
+                    { "old": "./longhu/", "by": "?2023/hills/longhu" },
+                    { "old": "./ling/", "by": "?2023/hills/ling" }
+                ]
+            },
+            "children": [
+                {
+                    "name": "井冈山",
+                    "intro": "星星之火，可以燎原！",
+                    "dir": "hills/jinggang",
+                    "file": true,
+                    "date": "20230731",
+                    "end": true,
+                    "related": [
+                        "更多江西秀丽山川",
+                        {
+                            "name": "龙虎山",
+                            "url": "?2023/hills/longhu"
+                        },
+                        {
+                            "name": "灵山",
+                            "url": "?2023/hills/ling"
+                        },
+                        "转载",
+                        {
+                            "name": "红色基因 - 微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404929364163952990"
+                        }
+                    ],
+                    "options": {
+                        "banner": {
+                            "url": "./2023/hills/jinggang/screennails/20230730_153035.webp"
+                        }
+                    }
+                },
+                {
+                    "name": "龙虎山",
+                    "intro": "趁着假期前来龙虎山景区参观，体验水上丹霞奇景。",
+                    "dir": "hills/longhu",
+                    "file": true,
+                    "date": "20231002",
+                    "end": true,
+                    "related": [
+                        "更多江西秀丽山川",
+                        {
+                            "name": "井冈山",
+                            "url": "?2023/hills/jinggang"
+                        },
+                        {
+                            "name": "灵山",
+                            "url": "?2023/hills/ling"
+                        },
+                        "转载",
+                        {
+                            "name": "龙虎山 - 微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404952699367195218"
+                        }
+                    ],
+                    "options": {
+                        "banner": {
+                            "url": "./2023/hills/longhu/screennails/20231002_141815.webp"
+                        }
+                    }
+                },
+                {
+                    "name": "灵山",
+                    "intro": "山不在高，有仙则灵，吴上乘富饶之地，北有号称睡美人的灵山，风景秀丽，历代名人多有美誉。",
+                    "dir": "hills/ling",
+                    "file": true,
+                    "date": "20231003",
+                    "end": true,
+                    "related": [
+                        "更多江西秀丽山川",
+                        {
+                            "name": "井冈山",
+                            "url": "?2023/hills/jinggang"
+                        },
+                        {
+                            "name": "龙虎山",
+                            "url": "?2023/hills/longhu"
+                        },
+                        "转载",
+                        {
+                            "name": "灵山 - 微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309404952918045622301"
+                        }
+                    ],
+                    "options": {
+                        "banner": {
+                            "url": "./2023/hills/ling/screennails/20231003_115318.webp"
+                        }
+                    }
+                }
+            ]
+        },
+        {
             "name": "万有引力号",
             "intro": "宇宙之大，我们只是沧海一粟，使命之下，星辰大海，乘星舰穿梭，只为了人类的荣誉和未来。",
             "dir": "gravity",
             "file": true,
             "date": "20231113",
+            "location": "上海",
             "end": true,
             "related": [
                 "转载",
@@ -223,6 +328,7 @@
             "dir": "universal",
             "file": "hogwarts.md",
             "date": "20231204",
+            "location": "北京",
             "end": true,
             "related": [
                 {
@@ -245,6 +351,7 @@
                     "dir": "universal",
                     "file": true,
                     "date": "20231203",
+                    "location": "北京",
                     "end": true,
                     "related": [
                         "转载",
@@ -265,10 +372,75 @@
             "location": "上海",
             "end": true,
             "related": [
+                {
+                    "name": "中国之美",
+                    "url": "?2024/ceibs/beauty"
+                },
                 "转载",
                 {
-                    "name": "微博文章",
+                    "name": "欧洲当代地缘 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309404991683367403675"
+                }
+            ],
+            "children": [
+                {
+                    "name": "中国之美",
+                    "intro": "三十周年小青开放日，各类活动一整天，外加「中欧话未来」系列之《中国之美》主旨分享，还带回来满满伴手礼。",
+                    "dir": "ceibs",
+                    "file": "beauty.md",
+                    "date": "20241116",
+                    "location": "上海",
+                    "end": true
+                }
+            ]
+        },
+        {
+            "name": "一路向南",
+            "intro": "春节期间驾车向南前行，很多年没有这样旅游了，途径清远和阳江，抵达深圳，随后再沿着公鸡肚子向东向北。",
+            "dir": "canton",
+            "file": true,
+            "date": "20240213",
+            "location": "深圳",
+            "end": true,
+            "related": [
+                "继续",
+                {
+                    "name": "鹭岛 马尾 三坊七巷",
+                    "url": "?2024/fujian"
+                },
+                "转载",
+                {
+                    "name": "一路向南 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405000370379161696"
+                },
+                {
+                    "name": "前海 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405000965307891919"
+                }
+            ]
+        },
+        {
+            "name": "鹭岛 马尾 三坊七巷",
+            "intro": "不知什么缘由，似乎以往常来厦门和福州旅游，今年春节再光临，又恰逢情人节，逛古城，看历史，吃海鲜，简单游玩一番。",
+            "dir": "fujian",
+            "file": true,
+            "date": "20240215",
+            "location": "福州",
+            "end": true,
+            "related": [
+                "转载",
+                {
+                    "name": "鹭岛 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405001447753515280"
+                },
+                {
+                    "name": "马尾与三坊七巷 - 微博文章",
+                    "url": "https://weibo.com/ttarticle/p/show?id=2309405001685381808262"
+                },
+                "回顾",
+                {
+                    "name": "一路向南",
+                    "url": "?2024/canton"
                 }
             ]
         },
@@ -287,13 +459,6 @@
                     { "old": "./forbidden", "by": "?2024/peking/forbidden" }
                 ]
             },
-            "related": [
-                "相关游记",
-                {
-                    "name": "雍和宫",
-                    "url": "?2025/yonghe"
-                }
-            ],
             "children": [
                 {
                     "name": "天坛",
@@ -314,6 +479,10 @@
                             "url": "?2024/peking/forbidden"
                         },
                         "相关游记",
+                        {
+                            "name": "雍和宫",
+                            "url": "?2025/yonghe"
+                        },
                         {
                             "name": "朝鲜王朝",
                             "url": "?2025/korea"
@@ -371,6 +540,10 @@
                     "end": true,
                     "related": [
                         "相关游记",
+                        {
+                            "name": "雍和宫",
+                            "url": "?2025/yonghe"
+                        },
                         {
                             "name": "朝鲜王朝",
                             "url": "?2025/korea"

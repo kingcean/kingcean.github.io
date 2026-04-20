@@ -21,8 +21,14 @@ body > header:first-child > section:first-child > h1 > img:hover {
     max-width: 640px;
     border-radius: 4px;
 }
-#blog_content > article > main > ul > li > img, #blog_content > article > main > ol > li > img {
+#blog_content > article > main > ul > li > img, #blog_content > article > main > ol > li > img,
+#blog_content > article > main > ul > li > ul > li > img, #blog_content > article > main > ol > li > ul > li > img,
+#blog_content > article > main > ul > li > ol > li > img, #blog_content > article > main > ol > li > ol > li > img,
+#blog_content > article > main > ul > li > p > img, #blog_content > article > main > ol > li > p > img,
+#blog_content > article > main > ul > li > ul > li > p > img, #blog_content > article > main > ol > li > ul > li > p > img,
+#blog_content > article > main > ul > li > ol > li > p > img, #blog_content > article > main > ol > li > ol > li > p > img {
     max-width: 600px;
+    border-radius: 4px;
 }
 #blog_content > article > main > hr {
     color: #666;
