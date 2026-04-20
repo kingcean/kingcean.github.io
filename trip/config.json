@@ -14,7 +14,7 @@
             "related": [
                 "转载",
                 {
-                    "name": "微博文章",
+                    "name": "河西走廊 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309404928257639448928"
                 }
             ],
@@ -30,15 +30,15 @@
             "dir": "yunnan",
             "file": true,
             "date": "20230910",
-            "location": "香格里拉",
+            "location": "迪庆",
             "end": {
                 "end": true,
                 "urls": [
-                    { "old": "./prequel/", "by": "?2023/yunnan/prequel" },
-                    { "old": "./lijiang/", "by": "?2023/yunnan/lijiang" },
-                    { "old": "./sum-rtsen-gling/", "by": "?2023/yunnan/sum-rtsen-gling" },
-                    { "old": "./shangri-la/", "by": "?2023/yunnan/shangri-la" },
-                    { "old": "./pasture/", "by": "?2023/yunnan/pasture" }
+                    { "old": "./prequel", "by": "?2023/yunnan/prequel" },
+                    { "old": "./lijiang", "by": "?2023/yunnan/lijiang" },
+                    { "old": "./sum-rtsen-gling", "by": "?2023/yunnan/sum-rtsen-gling" },
+                    { "old": "./shangri-la", "by": "?2023/yunnan/shangri-la" },
+                    { "old": "./pasture", "by": "?2023/yunnan/pasture" }
                 ]
             },
             "children": [
@@ -61,7 +61,7 @@
                     "related": [
                         "转载",
                         {
-                            "name": "微博文章",
+                            "name": "再赴丽江 - 微博文章",
                             "url": "https://weibo.com/ttarticle/p/show?id=2309404943479464919364"
                         }
                     ]
@@ -72,12 +72,12 @@
                     "dir": "yunnan",
                     "file": "sum-rtsen-gling.md",
                     "date": "20230908",
-                    "location": "香格里拉",
+                    "location": "迪庆",
                     "end": true,
                     "related": [
                         "转载",
                         {
-                            "name": "微博文章",
+                            "name": "松赞林 - 微博文章",
                             "url": "https://weibo.com/ttarticle/p/show?id=2309404943834189791690"
                         }
                     ]
@@ -88,12 +88,12 @@
                     "dir": "yunnan",
                     "file": "shangri-la.md",
                     "date": "20230909",
-                    "location": "香格里拉",
+                    "location": "迪庆",
                     "end": true,
                     "related": [
                         "转载",
                         {
-                            "name": "微博文章",
+                            "name": "心中的日月 - 微博文章",
                             "url": "https://weibo.com/ttarticle/p/show?id=2309404944192286884750"
                         }
                     ]
@@ -104,12 +104,12 @@
                     "dir": "yunnan",
                     "file": "pasture.md",
                     "date": "20230910",
-                    "location": "香格里拉",
+                    "location": "迪庆",
                     "end": true,
                     "related": [
                         "转载",
                         {
-                            "name": "微博文章",
+                            "name": "纳颂牧场 - 微博文章",
                             "url": "https://weibo.com/ttarticle/p/show?id=2309404944382552834183"
                         }
                     ],
@@ -131,7 +131,7 @@
             "related": [
                 "转载",
                 {
-                    "name": "微博文章",
+                    "name": "万有引力号 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309404967694884536367"
                 }
             ],
@@ -142,18 +142,18 @@
         {
             "name": "霍格沃兹",
             "intro": "魔法世界虽然奇幻隐蔽，但其实也是充满温馨和和谐，传承经典，孜孜不倦。",
-            "dir": "hogwarts",
-            "file": true,
+            "dir": "universal",
+            "file": "hogwarts.md",
             "date": "20231204",
             "end": true,
             "related": [
                 {
                     "name": "环球影城",
-                    "url": "?2023/hogwarts/universal"
+                    "url": "?2023/universal"
                 },
                 "转载",
                 {
-                    "name": "微博文章",
+                    "name": "霍格沃兹 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309404975181847199824"
                 }
             ],
@@ -164,14 +164,14 @@
                 {
                     "name": "环球影城",
                     "intro": "上次去的还是大阪，这次去的已在北京。两年多前开园，今天才找到机会前往，好好游玩。",
-                    "dir": "hogwarts",
-                    "file": "universal.md",
+                    "dir": "universal",
+                    "file": true,
                     "date": "20231203",
                     "end": true,
                     "related": [
                         "转载",
                         {
-                            "name": "微博文章",
+                            "name": "环球影城 - 微博文章",
                             "url": "https://weibo.com/ttarticle/p/show?id=2309404975013039309227"
                         }
                     ]
@@ -195,6 +195,87 @@
             ]
         },
         {
+            "name": "北京中轴",
+            "intro": "沿着北京中轴线漫步，从天坛，到紫禁城，到北海，到什刹海，一路领略帝都盛气。",
+            "dir": "peking",
+            "file": true,
+            "date": "20240610",
+            "location": "北京",
+            "end": {
+                "end": true,
+                "urls": [
+                    { "old": "./heaven", "by": "?2024/peking/heaven" },
+                    { "old": "./seas", "by": "?2024/peking/seas" },
+                    { "old": "./forbidden", "by": "?2024/peking/forbidden" }
+                ]
+            },
+            "children": [
+                {
+                    "name": "天坛",
+                    "intro": "天圆地方，祭天、祈谷、祈雨。",
+                    "dir": "peking",
+                    "file": "heaven.md",
+                    "date": "20240607",
+                    "location": "北京",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "天坛 - 微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309405042731620892964"
+                        }
+                    ],
+                    "options": {
+                        "banner": {
+                            "url": "./2024/peking/screennails/20240607_143514.webp"
+                        }
+                    }
+                },
+                {
+                    "name": "从什刹海到北海",
+                    "intro": "海，有时指代较大的湖。紫禁城旁有许多的海，沿着中轴线以西，蜿蜒穿越北京内城。",
+                    "dir": "peking",
+                    "file": "seas.md",
+                    "date": "20240609",
+                    "location": "北京",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "从什刹海到北海 - 微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309405043515708276939"
+                        }
+                    ],
+                    "options": {
+                        "banner": {
+                            "url": "./2024/peking/screennails/20240608_184208.webp"
+                        }
+                    }
+                },
+                {
+                    "name": "紫禁城",
+                    "intro": "明清故宫是这个世界上首屈一指的建筑群，位于北京市中心，集中国宫殿建筑之精华，巍峨壮观。",
+                    "dir": "peking",
+                    "file": "forbidden.md",
+                    "date": "20240610",
+                    "location": "北京",
+                    "end": true,
+                    "related": [
+                        "转载",
+                        {
+                            "name": "紫禁城 - 微博文章",
+                            "url": "https://weibo.com/ttarticle/p/show?id=2309405043836991963321"
+                        }
+                    ],
+                    "options": {
+                        "banner": {
+                            "url": "./2024/peking/screennails/20240610_135732.webp"
+                        }
+                    }
+                }
+            ]
+        },
+        {
             "name": "香港漫步",
             "intro": "在九龙和香港岛徒步旅行，密集繁华的高楼街市和湿咸凉爽的阵阵海风，带来奇特风采。",
             "dir": "hongkong",
@@ -205,7 +286,7 @@
             "related": [
                 "转载",
                 {
-                    "name": "微博文章",
+                    "name": "香港漫步 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405086287320186903"
                 }
             ]
@@ -221,7 +302,7 @@
             "related": [
                 "转载",
                 {
-                    "name": "微博文章",
+                    "name": "朝鲜王朝 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405169776405381633"
                 }
             ],
@@ -240,7 +321,7 @@
             "related": [
                 "转载",
                 {
-                    "name": "微博文章",
+                    "name": "雍和宫 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405181733422366755"
                 }
             ],
@@ -259,7 +340,7 @@
             "related": [
                 "转载",
                 {
-                    "name": "微博文章",
+                    "name": "青岛 - 微博文章",
                     "url": "https://weibo.com/ttarticle/p/show?id=2309405190791697400122"
                 }
             ]
